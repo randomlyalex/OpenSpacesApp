@@ -1,5 +1,8 @@
 package com.codeclan.openspaces.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "pois")
 public class Bench extends Space {
 
     private int capacity;
@@ -7,6 +10,8 @@ public class Bench extends Space {
     public Bench(Coord coord, String accessibility, String privacy, boolean sheltered, int capacity) {
         super(coord, accessibility, privacy, sheltered);
         this.capacity = capacity;
+        this.setType("Bench");
+
     }
 
     public int getCapacity() {
