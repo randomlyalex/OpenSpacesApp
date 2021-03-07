@@ -2,26 +2,24 @@ import React, { useEffect, useState } from 'react'
 import Request from '../helpers/request'
 
 const HomeContainer = () => {
-  
-  const [pois, setPois] = useState([]);
-  
-  const getPois = () => {
-    const request = new Request();
-    request.get("/api/pois").then((data) => {setPois(data);})
-  }
+    const [pois, setPois] = useState([])
 
-  useEffect(()=> {
-    getPois()
-  }, [])
+    const getPois = () => {
+        const request = new Request()
+        request.get('/api/pois').then((data) => {
+            setPois(data)
+        })
+    }
 
-  console.log(pois);
-  return (
-    <div>
+    useEffect(() => {
+        getPois()
+    }, [])
 
-      <p>This is the home page</p>
-      
-    </div>
-  )
+    return (
+        <div>
+            <p>This is the home page</p>
+        </div>
+    )
 }
 
 export default HomeContainer
