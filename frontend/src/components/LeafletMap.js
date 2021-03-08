@@ -15,11 +15,7 @@ const LeafletMap = ({pois}) => {
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <Marker position={[55.971, -3.165934]}>
-    <Popup>
-      example of our first poi in the DB <br /> Easily or not so easily customizable.
-    </Popup>
-  </Marker>
+         
         {pois.map((poi) => {
           return <Marker
           key={poi.id} 
