@@ -11,7 +11,7 @@ public class Space extends Poi {
     public Space(Coord coord, String accessibility, String privacy, boolean sheltered) {
         super(coord, accessibility, privacy);
         this.sheltered = sheltered;
-        this.setType("Space");
+        this.setType("space");
     }
 
     public boolean isSheltered() {

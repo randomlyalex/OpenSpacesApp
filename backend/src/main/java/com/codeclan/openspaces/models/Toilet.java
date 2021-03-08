@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Toilet extends Poi{
     public Toilet(Coord coord, String accessibility, String privacy) {
         super(coord, accessibility, privacy);
-        this.setType("Toilet");
+        this.setType("toilet");
 
     }
 
