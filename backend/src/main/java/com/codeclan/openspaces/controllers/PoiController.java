@@ -36,14 +36,14 @@ public class PoiController {
         return new ResponseEntity<>(poiRepository.findAll(), HttpStatus.OK);
     }
 
-       @PostMapping(value = "/benches")
+       @PostMapping(value = "/bench")
     public ResponseEntity<Poi> postBench(@RequestBody Bench bench){
         benchRepository.save(bench);
         return new ResponseEntity<>(bench, HttpStatus.CREATED);
     }
 
 
-    @PostMapping(value = "/tables")
+    @PostMapping(value = "/table")
     public ResponseEntity<Poi> postTable(@RequestBody Table table){
         tableRepository.save(table);
         return new ResponseEntity<>(table, HttpStatus.CREATED);
