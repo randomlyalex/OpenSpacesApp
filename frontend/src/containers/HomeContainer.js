@@ -12,6 +12,14 @@ const HomeContainer = () => {
         })
     }
 
+    const PoisList = pois.map((poi) => {
+        return (
+            <h3 key={poi.id}>
+                {poi.id} - {poi.type}
+            </h3>
+        )
+    })
+
     const handleDropdown = (event) => {
         if (event.target.value != '') {
             setType(`?type=${event.target.value}`)
@@ -34,6 +42,8 @@ const HomeContainer = () => {
                 <option value="toilet">Toilet</option>
                 <option value="space">Space</option>
             </select>
+
+            {PoisList}
         </div>
     )
 }
