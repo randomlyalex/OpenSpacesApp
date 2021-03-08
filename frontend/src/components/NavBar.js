@@ -32,7 +32,7 @@ const NavBar = () => {
                         </IconButton>
                     </Link>
 
-                    <IconButton disabled="true">
+                    <IconButton disabled={true}>
                         <MoreHoriz />
                         <Typography variant="h6" className={classes.title}>
                             Details
