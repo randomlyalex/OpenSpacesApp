@@ -9,9 +9,6 @@ const MainContainer = () => {
     return (
             <>
                 <NavBar />
-                <Button variant="text" color="default">
-                  Test Button
-                </Button>
                 <Switch>
                     <Route exact path="/" render={() => <HomeContainer />} />
                     <Route path="/admin" render={() => <AdminContainer />} />
