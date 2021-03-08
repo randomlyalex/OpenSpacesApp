@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import PigeonMap from '../components/PigeonMap'
 import Request from '../helpers/request'
 
 const HomeContainer = () => {
@@ -43,7 +44,7 @@ const HomeContainer = () => {
                 <option value="space">Space</option>
             </select>
 
-            {PoisList}
+            <PigeonMap pois={pois} />
         </div>
     )
 }
