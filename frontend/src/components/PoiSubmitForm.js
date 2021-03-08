@@ -57,14 +57,14 @@ const PoiSubmitForm = ({ onPoiSubmit }) => {
                 </select>
                 <input
                     type="number"
-                    step="0.0001"
+                    step="0.000001"
                     placeholder="Lat"
                     value={lat}
                     onChange={handleLatChange}
                 />
                 <input
                     type="number"
-                    step="0.0001"
+                    step="0.000001"
                     placeholder="Lon"
                     value={lon}
                     onChange={handleLonChange}
