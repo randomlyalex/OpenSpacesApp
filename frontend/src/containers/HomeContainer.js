@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import LeafletMap from '../components/LeafletMap'
 import Request from '../helpers/request'
 
 const HomeContainer = () => {
@@ -16,6 +17,7 @@ const HomeContainer = () => {
         return (
             <h3 key={poi.id}>
                 {poi.id} - {poi.type}
+                {poi.coord.lat} - {poi.coord.lon}
             </h3>
         )
     })
@@ -44,7 +46,8 @@ const HomeContainer = () => {
             </select>
 
             {PoisList}
-        </div>
+            <LeafletMap pois={pois}/>
+            </div>
     )
 }
 
