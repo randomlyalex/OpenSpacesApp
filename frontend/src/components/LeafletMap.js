@@ -53,7 +53,6 @@ const LeafletMap = ({ pois }) => {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-               
                 {
                     // why can't this is a map function up top?
                     pois.map((poi) => {
@@ -69,7 +68,6 @@ const LeafletMap = ({ pois }) => {
                         )
                     })
                 }
-               
                 <LocationMarker/>
             </MapContainer>
         </>
