@@ -39,10 +39,10 @@ const HomeContainer = () => {
             <p>This is the home page</p>
             <select onChange={handleDropdown}>
                 <option value="">All</option>
-                <option value="bench">Bench</option>
-                <option value="table">Table</option>
-                <option value="toilet">Toilet</option>
-                <option value="space">Space</option>
+                <option value="benches">Bench</option>
+                <option value="tables">Table</option>
+                <option value="toilets">Toilet</option>
+                <option value="spaces">Space</option>
             </select>
 
             {PoisList}
