@@ -36,16 +36,16 @@ const HomeContainer = () => {
 
     return (
         <div>
-            <p>This is the home page</p>
+            <br/>
+            <label>Filter Points of Interest by Type:</label>
             <select onChange={handleDropdown}>
                 <option value="">All</option>
                 <option value="bench">Bench</option>
                 <option value="table">Table</option>
                 <option value="toilet">Toilet</option>
                 <option value="space">Space</option>
-            </select>
+            </select> 
 
-            {PoisList}
             <LeafletMap pois={pois}/>
             </div>
     )
