@@ -1,92 +1,113 @@
 /* eslint react/prop-types: 0 */
 import React, { useState } from 'react'
+import '../App.css'
 
-const PoiSubmitForm = ({ onPoiSubmit }) => {
-    const [type, setType] = useState('')
-    const [lat, setLat] = useState('')
-    const [lon, setLon] = useState('')
-    const [privacy, setPrivacy] = useState('')
-    const [accessibility, setAccessibility] = useState('')
-    const [capacity, setCapacity] = useState('')
-
-    const handleTypeChange = (event) => {
-        setType(event.target.value)
-        console.log(event.target.value)
+const PoiSubmitForm = ({ onPoiSubmit, lat, lon }) => {
+    const initialPoiFormState = {
+        coord: {
+            lat: 0,
+            lon: 0,
+        },
+        lat: lat,
+        lon: lon,
+        privacy: '',
+        accessibility: '',
+        capacity: 0,
+        sheltered: false,
+        type: 'bench',
     }
 
-    const handleLatChange = (event) => {
-        setLat(event.target.value)
-    }
+    const [poiFormData, setPoiFormData] = useState(initialPoiFormState)
 
-    const handleLonChange = (event) => {
-        setLon(event.target.value)
-    }
-
-    const handlePrivacyChange = (event) => {
-        setPrivacy(event.target.value)
-    }
-
-    const handleAccessibilityChange = (event) => {
-        setAccessibility(event.target.value)
-    }
-
-    const handleCapacityChange = (event) => {
-        setCapacity(event.target.value)
-    }
-
-    const handleFormSubmit = (event) => {
+    const onSubmit = (event) => {
         event.preventDefault()
-        onPoiSubmit({
-            coord: {
-                lat: lat,
-                lon: lon,
-            },
-            privacy: privacy,
-            accessibility: accessibility,
-            capacity: capacity,
-            type: type,
-        })
+        poiFormData.coord.lat = poiFormData.lat
+        poiFormData.coord.lon = poiFormData.lon
+        delete poiFormData.lat
+        delete poiFormData.lon
+        onPoiSubmit(poiFormData)
+        setPoiFormData(initialPoiFormState)
+    }
+
+    function onChange({ target }) {
+        const value = target.type === 'checkbox' ? target.checked : target.value
+        setPoiFormData((prevState) => ({ ...prevState, [target.name]: value }))
     }
 
     return (
         <div>
-            <form onSubmit={handleFormSubmit}>
-                <select onChange={handleTypeChange}>
+            <h4> New Form Test</h4>
+            <form onSubmit={onSubmit}>
+                <label>PoiType</label>
+                <select name="type" onChange={onChange}>
                     <option value="bench">Bench</option>
                     <option value="table">Table</option>
+                    <option value="toilet">Toilet</option>
+                    <option value="space">Space</option>
                 </select>
-                <input
-                    type="number"
-                    step="0.000001"
-                    placeholder="Lat"
-                    value={lat}
-                    onChange={handleLatChange}
-                />
-                <input
-                    type="number"
-                    step="0.000001"
-                    placeholder="Lon"
-                    value={lon}
-                    onChange={handleLonChange}
-                />
+                <br />
+                <label>Location</label>
+                <br />
+                <span>
+                    <input
+                        type="text"
+                        name="lat"
+                        placeholder="lat?"
+                        value={poiFormData.lat}
+                        onChange={onChange}
+                    />
+
+                    <input
+                        type="text"
+                        name="lon"
+                        placeholder="lon?"
+                        value={poiFormData.lon}
+                        onChange={onChange}
+                    />
+                </span>
+                <br />
+                <label>Privacy</label>
+                <br />
                 <input
                     type="text"
-                    placeholder="Privacy?"
-                    value={privacy}
-                    onChange={handlePrivacyChange}
+                    name="privacy"
+                    value={poiFormData.privacy}
+                    onChange={onChange}
                 />
+                <br />
+                <label>Accessibility</label>
+                <br />
                 <input
                     type="text"
-                    placeholder="Accessibility?"
-                    value={accessibility}
-                    onChange={handleAccessibilityChange}
+                    name="accessibility"
+                    value={poiFormData.accessibility}
+                    onChange={onChange}
                 />
+                <br />
+                <label>Capacity</label>
+                <br />
                 <input
                     type="number"
-                    placeholder="capacity?"
-                    value={capacity}
-                    onChange={handleCapacityChange}
+                    name="capacity"
+                    value={poiFormData.capacity}
+                    onChange={onChange}
                 />
+                <br />
+                <span>
+                    <label>Sheltered: </label>
+                    <div onChange={onChange}>
+                        Yes
+                        <input type="radio" name="sheltered" value="true" />
+                        No
+                        <input
+                            type="radio"
+                            name="sheltered"
+                            value="false"
+                            defaultChecked
+                        />
+                    </div>
+                </span>
+                <br />
                 <input type="submit" />
             </form>
         </div>
