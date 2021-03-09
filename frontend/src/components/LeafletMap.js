@@ -2,14 +2,13 @@ import React, { useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet'
 import '../App.css'
 import PropTypes from 'prop-types'
-import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
 
 function LocationMarker() {
   const [position, setPosition] = useState(null)
   const map = useMapEvents({
-    click() {
+    dblclick() {
       map.locate()
   
       
@@ -34,21 +33,12 @@ const LeafletMap = ({ pois }) => {
     
     return (
         <>
-            <Button
-                variant="contained"
-                color="secondary"
-                
-            >
-                <Typography color="initial">Locate Me</Typography>
-            </Button>
+        <h3>Double Click on the map to find your location</h3>
             <MapContainer center={centreMap} 
             zoom={15} 
             scrollWheelZoom={true}
-            
+            doubleClickZoom={false}
             >
-              
-                <Typography color="initial">Locate Me</Typography>
-          
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -63,6 +53,10 @@ const LeafletMap = ({ pois }) => {
                             >
                                 <Popup>
                                     <h2>{poi.type}</h2>
+                                    <p>Space For: {poi.capacity}</p>
+                                    <p>Accessibility: {poi.accessibility}</p>
+                                    <p>Privacy: {poi.privacy}</p>
+                                    <p>Is Sheltered? :{poi.sheltered.toString()}</p>
                                 </Popup>
                             </Marker>
                         )
