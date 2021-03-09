@@ -34,6 +34,8 @@ const AdminContainer = () => {
                 onPoiSubmit={(poi) => {
                     addPoi(poi)
                 }}
+                lat={0}
+                lon={0}
             />
         </div>
     )
