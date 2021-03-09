@@ -29,10 +29,7 @@ const LeafletMap = ({ pois }) => {
                     // why can't this is a map function up top?
                     pois.map((poi) => {
                         return (
-                            <Marker
-                                key={poi.id}
-                                position={[poi.coord.lat, poi.coord.lon]}
-                            >
+                            <Marker key={poi.id} position={[poi.lat, poi.lon]}>
                                 <Popup>
                                     <h2>{poi.type}</h2>
                                 </Popup>

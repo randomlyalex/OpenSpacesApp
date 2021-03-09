@@ -17,7 +17,7 @@ const HomeContainer = () => {
         return (
             <h3 key={poi.id}>
                 {poi.id} - {poi.type}
-                {poi.coord.lat} - {poi.coord.lon}
+                {poi.lat} - {poi.lon}
             </h3>
         )
     })
@@ -46,8 +46,8 @@ const HomeContainer = () => {
             </select>
 
             {PoisList}
-            <LeafletMap pois={pois}/>
-            </div>
+            <LeafletMap pois={pois} />
+        </div>
     )
 }
 
