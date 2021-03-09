@@ -1,45 +1,21 @@
 /* eslint react/prop-types: 0 */
 import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import '../App.css'
 
 const PoiSubmitForm = ({ onPoiSubmit, lat, lon }) => {
-    const initialPoiFormState = {
-        coord: {
-            lat: 0,
-            lon: 0,
-        },
-        lat: lat,
-        lon: lon,
-        privacy: '',
-        accessibility: '',
-        capacity: 0,
-        sheltered: false,
-        type: 'bench',
-    }
+    const { handleSubmit, register } = useForm({})
 
-    const [poiFormData, setPoiFormData] = useState(initialPoiFormState)
-
-    const onSubmit = (event) => {
-        event.preventDefault()
-        poiFormData.coord.lat = poiFormData.lat
-        poiFormData.coord.lon = poiFormData.lon
-        delete poiFormData.lat
-        delete poiFormData.lon
-        onPoiSubmit(poiFormData)
-        setPoiFormData(initialPoiFormState)
-    }
-
-    function onChange({ target }) {
-        const value = target.type === 'checkbox' ? target.checked : target.value
-        setPoiFormData((prevState) => ({ ...prevState, [target.name]: value }))
+    const onSubmit = (formData) => {
+        onPoiSubmit(formData)
     }
 
     return (
         <div>
             <h4> New Form Test</h4>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <label>PoiType</label>
-                <select name="type" onChange={onChange}>
+                <select name="type" ref={register}>
                     <option value="bench">Bench</option>
                     <option value="table">Table</option>
                     <option value="toilet">Toilet</option>
@@ -53,49 +29,32 @@ const PoiSubmitForm = ({ onPoiSubmit, lat, lon }) => {
                         type="text"
                         name="lat"
                         placeholder="lat?"
-                        value={poiFormData.lat}
-                        onChange={onChange}
+                        ref={register}
                     />
 
                     <input
                         type="text"
                         name="lon"
                         placeholder="lon?"
-                        value={poiFormData.lon}
-                        onChange={onChange}
+                        ref={register}
                     />
                 </span>
                 <br />
                 <label>Privacy</label>
                 <br />
-                <input
-                    type="text"
-                    name="privacy"
-                    value={poiFormData.privacy}
-                    onChange={onChange}
-                />
+                <input type="text" name="privacy" ref={register} />
                 <br />
                 <label>Accessibility</label>
                 <br />
-                <input
-                    type="text"
-                    name="accessibility"
-                    value={poiFormData.accessibility}
-                    onChange={onChange}
-                />
+                <input type="text" name="accessibility" ref={register} />
                 <br />
                 <label>Capacity</label>
                 <br />
-                <input
-                    type="number"
-                    name="capacity"
-                    value={poiFormData.capacity}
-                    onChange={onChange}
-                />
+                <input type="number" name="capacity" ref={register} />
                 <br />
                 <span>
                     <label>Sheltered: </label>
-                    <div onChange={onChange}>
+                    <div ref={register}>
                         Yes
                         <input type="radio" name="sheltered" value="true" />
                         No
