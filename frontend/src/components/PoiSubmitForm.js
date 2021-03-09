@@ -52,8 +52,8 @@ const PoiSubmitForm = ({ onPoiSubmit }) => {
         <div>
             <form onSubmit={handleFormSubmit}>
                 <select onChange={handleTypeChange}>
-                    <option value="benches">Bench</option>
-                    <option value="tables">Table</option>
+                    <option value="bench">Bench</option>
+                    <option value="table">Table</option>
                 </select>
                 <input
                     type="number"
