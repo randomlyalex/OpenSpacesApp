@@ -36,7 +36,8 @@ const HomeContainer = () => {
 
     return (
         <div>
-            <p>This is the home page</p>
+            <br />
+            <label>Filter Points of Interest by Type:</label>
             <select onChange={handleDropdown}>
                 <option value="">All</option>
                 <option value="bench">Bench</option>
@@ -45,7 +46,6 @@ const HomeContainer = () => {
                 <option value="space">Space</option>
             </select>
 
-            {PoisList}
             <LeafletMap pois={pois} />
         </div>
     )

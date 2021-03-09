@@ -1,26 +1,44 @@
 import React, { useState } from 'react'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet'
 import '../App.css'
 import PropTypes from 'prop-types'
-import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+
+
+function LocationMarker() {
+  const [position, setPosition] = useState(null)
+  const map = useMapEvents({
+    dblclick() {
+      map.locate()
+  
+      
+    },
+    locationfound(e) {
+      setPosition(e.latlng)
+      map.flyTo(e.latlng, map.getZoom())
+    },
+  })
+
+  return position === null ? null : (
+    <Marker position={position}>
+      <Popup>You are here</Popup>
+    </Marker>
+  )
+  
+}
+
+
 const LeafletMap = ({ pois }) => {
     const [centreMap, setCentreMap] = useState([55.9533, -3.1883])
-
-    const handleLocateMe = () => {
-        setCentreMap([55.9533, -3.1883])
-    }
-
+    
     return (
         <>
-            <Button
-                variant="contained"
-                color="secondary"
-                onClick={handleLocateMe}
+        <h3>Double Click on the map to find your location</h3>
+            <MapContainer center={centreMap} 
+            zoom={15} 
+            scrollWheelZoom={true}
+            doubleClickZoom={false}
             >
-                <Typography color="initial">Locate Me</Typography>
-            </Button>
-            <MapContainer center={centreMap} zoom={11} scrollWheelZoom={true}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -32,11 +50,16 @@ const LeafletMap = ({ pois }) => {
                             <Marker key={poi.id} position={[poi.lat, poi.lon]}>
                                 <Popup>
                                     <h2>{poi.type}</h2>
+                                    <p>Space For: {poi.capacity}</p>
+                                    <p>Accessibility: {poi.accessibility}</p>
+                                    <p>Privacy: {poi.privacy}</p>
+                                    <p>Is Sheltered? :{poi.sheltered.toString()}</p>
                                 </Popup>
                             </Marker>
                         )
                     })
                 }
+                <LocationMarker/>
             </MapContainer>
         </>
     )
