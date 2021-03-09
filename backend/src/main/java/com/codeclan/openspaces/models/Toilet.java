@@ -4,8 +4,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "pois")
 public class Toilet extends Poi{
-    public Toilet(Coord coord, String accessibility, String privacy) {
-        super(coord, accessibility, privacy);
+    public Toilet(double lat, double lon, String accessibility, String privacy) {
+        super(lat, lon, accessibility, privacy);
         this.setType("toilet");
 
     }

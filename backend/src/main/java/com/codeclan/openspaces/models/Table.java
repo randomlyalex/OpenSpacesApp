@@ -15,8 +15,8 @@ public class Table extends Space {
         this.capacity = capacity;
     }
 
-    public Table(Coord coord, String accessibility, String privacy, boolean sheltered, int capacity) {
-        super(coord, accessibility, privacy, sheltered);
+    public Table(double lat, double lon, String accessibility, String privacy, boolean sheltered, int capacity) {
+        super(lat, lon, accessibility, privacy, sheltered);
         this.capacity = capacity;
         this.setType("table");
 

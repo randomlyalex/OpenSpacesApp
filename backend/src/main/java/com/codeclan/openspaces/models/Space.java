@@ -8,8 +8,8 @@ public class Space extends Poi {
     private boolean sheltered;
 
 
-    public Space(Coord coord, String accessibility, String privacy, boolean sheltered) {
-        super(coord, accessibility, privacy);
+    public Space(double lat, double lon, String accessibility, String privacy, boolean sheltered) {
+        super(lat, lon, accessibility, privacy);
         this.sheltered = sheltered;
         this.setType("space");
     }

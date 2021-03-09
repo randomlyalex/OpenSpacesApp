@@ -7,8 +7,8 @@ public class Bench extends Space {
 
     private int capacity;
 
-    public Bench(Coord coord, String accessibility, String privacy, boolean sheltered, int capacity) {
-        super(coord, accessibility, privacy, sheltered);
+    public Bench(double lat, double lon, String accessibility, String privacy, boolean sheltered, int capacity) {
+        super(lat, lon, accessibility, privacy, sheltered);
         this.capacity = capacity;
         this.setType("bench");
 

@@ -3,18 +3,23 @@ package com.codeclan.openspaces.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Document(collection = "pois")
 public class Poi {
 
     @Id
     private String id;
-    private Coord coord;
+    private double lat;
+    private double lon;
     private String accessibility;
     private String privacy;
     private String type;
 
-    public Poi(Coord coord, String accessibility, String privacy) {
-        this.coord = coord;
+    public Poi(double lat, double lon, String accessibility, String privacy) {
+        this.lat = lat;
+        this.lon= lon;
         this.accessibility = accessibility;
         this.privacy = privacy;
         this.type = "poi";
@@ -36,12 +41,19 @@ public class Poi {
         this.id = id;
     }
 
-    public Coord getCoord() {
-        return coord;
-    }
+    public double getLat() {   return lat;   }
 
-    public void setCoord(Coord coord) {
-        this.coord = coord;
+    public void setLat(double lat) {  this.lat = lat;  }
+
+    public double getLon() {return lon; }
+
+    public void setLon(double lon) {  this.lon = lon; }
+
+    public List<Double> getLocation(){
+        ArrayList location = new ArrayList<Double>();
+        location.add(this.lat);
+        location.add(this.lon);
+        return location;
     }
 
     public String getAccessibility() {
