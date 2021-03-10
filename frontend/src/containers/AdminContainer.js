@@ -29,7 +29,6 @@ const AdminContainer = () => {
 
     return (
         <div>
-            <p>this is the Admin Page</p>
             <PoiSubmitForm
                 onPoiSubmit={(poi) => {
                     addPoi(poi)
