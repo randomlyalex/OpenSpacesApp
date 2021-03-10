@@ -1,16 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, } from 'react'
 import {
     MapContainer,
     TileLayer,
     Marker,
     Popup,
     useMapEvents,
-    Circle
+
 } from 'react-leaflet'
 import '../App.css'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 import { SettingsInputAntennaTwoTone } from '@material-ui/icons'
+import PoiSubmitForm from './PoiSubmitForm'
 
 function UserLocationMarker() {
     const [position, setPosition] = useState(null)
@@ -34,6 +35,7 @@ function AddMarker() {
         click(e) {
             const newMarker = e.latlng
             setMarker(newMarker)
+            console.log(newMarker)
         },
     })
     return marker === null ? null : (
@@ -43,6 +45,8 @@ function AddMarker() {
     )
 }
 
+
+//toggle add for = flase function to set toggleaddForm = !toggleAddForm 
 
 
 
@@ -63,6 +67,9 @@ const LeafletMap = ({ pois }) => {
             <Typography variant="sub">
                 Double Click on the map to find your location
             </Typography>
+
+            <PoiSubmitForm/>
+
             <MapContainer
                 center={centreMap}
                 zoom={15}
@@ -77,26 +84,38 @@ const LeafletMap = ({ pois }) => {
                 {
                     // why can't this is a map function up top?
                     pois.map((poi) => {
-                        return (
-                            <Marker key={poi.id} position={[poi.lat, poi.lon]}>
+
+                        if(poi.type === ("bench" || "table")){
+
+                            return (
+                                <Marker key={poi.id} position={[poi.lat, poi.lon]}>
                                 <Popup>
                                     <h2>{poi.type}</h2>
                                     <p>Space For: {poi.capacity}</p>
                                     <p>Accessibility: {poi.accessibility}</p>
                                     <p>Privacy: {poi.privacy}</p>
-                                    <p>
-                                        Is Sheltered? :
-                                        {poi.sheltered.toString()}
-                                    </p>
+                                    <p>Is Sheltered?: {poi.sheltered.toString()}</p>
                                 </Popup>
                             </Marker>
                         )
+                    }else{
+                        return (
+                            <Marker key={poi.id} position={[poi.lat, poi.lon]}>
+                            <Popup>
+                                <h2>{poi.type}</h2>
+                                <p>Accessibility: {poi.accessibility}</p>
+                                <p>Privacy: {poi.privacy}</p>
+                            </Popup>
+                        </Marker>
+                    )
+                    }                  
                     })
                 }
                 <UserLocationMarker />
-                <MyComponent/>
-                {/* <AddMarkerToClick/> */}
+                <AddMarker/>
+               
             </MapContainer>
+
         </>
     )
 }
