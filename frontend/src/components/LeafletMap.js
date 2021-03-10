@@ -48,6 +48,22 @@ function AddMarker() {
 const LeafletMap = ({ pois }) => {
     const [centreMap, setCentreMap] = useState([55.9533, -3.1883])
 
+    const AllLoadedPois = () => {
+        return pois.map((poi) => {
+            return (
+                <Marker key={poi.id} position={[poi.lat, poi.lon]}>
+                    <Popup>
+                        <h2>{poi.type}</h2>
+                        <p>Space For: {poi.capacity}</p>
+                        <p>Accessibility: {poi.accessibility}</p>
+                        <p>Privacy: {poi.privacy}</p>
+                        <p>Is Sheltered? :{poi.sheltered.toString()}</p>
+                    </Popup>
+                </Marker>
+            )
+        })
+    }
+
     return (
         <>
             <Typography variant="sub">
@@ -63,25 +79,7 @@ const LeafletMap = ({ pois }) => {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {
-                    // why can't this is a map function up top?
-                    pois.map((poi) => {
-                        return (
-                            <Marker key={poi.id} position={[poi.lat, poi.lon]}>
-                                <Popup>
-                                    <h2>{poi.type}</h2>
-                                    <p>Space For: {poi.capacity}</p>
-                                    <p>Accessibility: {poi.accessibility}</p>
-                                    <p>Privacy: {poi.privacy}</p>
-                                    <p>
-                                        Is Sheltered? :
-                                        {poi.sheltered.toString()}
-                                    </p>
-                                </Popup>
-                            </Marker>
-                        )
-                    })
-                }
+                <AllLoadedPois />
                 <LocationMarker />
                 <AddMarker />
             </MapContainer>
