@@ -48,15 +48,10 @@ const HomeContainer = () => {
 
     return (
         <>
-            <Container component="main" justify="center" alignContent="center">
+            <Container component="main">
                 <CssBaseline />
-                <Grid
-                    container
-                    spacing={0}
-                    justify="center"
-                    alignContent="center"
-                >
-                    <Grid item xs={12} justify="center" alignContent="center">
+                <Grid container spacing={0}>
+                    <Grid item xs={12}>
                         <FormControl component="fieldset">
                             <FormLabel component="legend">
                                 Filter by Type
@@ -97,7 +92,7 @@ const HomeContainer = () => {
                         </FormControl>
                     </Grid>
 
-                    <Grid item xs={12} justify="center" alignContent="center">
+                    <Grid item xs={12}>
                         <LeafletMap pois={pois} />
                     </Grid>
                 </Grid>
