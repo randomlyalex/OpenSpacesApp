@@ -7,6 +7,10 @@ import HomeIcon from '@material-ui/icons/Home'
 import { MoreHoriz, Settings } from '@material-ui/icons'
 import { Typography, Container } from '@material-ui/core'
 import { Link, Route } from 'react-router-dom'
+import LoginButton from './LoginButton'
+import LogOutButton from './LogOutButton'
+import {useAuth0} from '@auth0/auth0-react';
+
 
 const useStyles = makeStyles({
     root: {
@@ -63,6 +67,8 @@ const NavBar = () => {
                                 )
                             }}
                         />
+                        <LoginButton/>
+                        <LogOutButton/>
                     </Toolbar>
                 </AppBar>
             </Container>
