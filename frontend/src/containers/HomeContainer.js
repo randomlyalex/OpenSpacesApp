@@ -15,12 +15,13 @@ import LeafletMap from '../components/LeafletMap'
 import Request from '../helpers/request'
 
 const HomeContainer = () => {
+    const serverUrl = process.env.REACT_APP_API_SERVER 
     const [pois, setPois] = useState([])
     const [type, setType] = useState('all')
 
     const getPois = () => {
         const request = new Request()
-        request.get(`/api/pois?type=${type}`).then((data) => {
+        request.get(`${serverUrl}/api/pois?type=${type}`).then((data) => {
             setPois(data)
         })
     }

@@ -3,6 +3,7 @@ import PoiSubmitForm from '../components/PoiSubmitForm'
 import Request from '../helpers/request'
 
 const AdminContainer = () => {
+    const serverUrl = process.env.REACT_APP_API_SERVER
     const addPoi = (submittedPoi) => {
         const request = new Request()
         let endPoint = null
@@ -21,7 +22,7 @@ const AdminContainer = () => {
                 break
         }
         if (endPoint != null) {
-            request.post(`/api/${endPoint}`, submittedPoi)
+            request.post(`${serverUrl}/api/${endPoint}`, submittedPoi)
         }
         console.log(endPoint)
         console.log(submittedPoi)
