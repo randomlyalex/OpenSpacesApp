@@ -66,7 +66,7 @@ const LeafletMap = ({ pois }) => {
 
     return (
         <>
-            <Typography variant="sub">
+            <Typography variant="subtitle1">
                 Double Click on the map to find your location
             </Typography>
             <MapContainer

@@ -8,26 +8,24 @@ import HomeContainer from './HomeContainer'
 const MainContainer = () => {
     return (
         <>
-            <Container>
-                <Grid Container>
-                    <Grid xs={12}>
-                        <NavBar />
-                    </Grid>
-                    <Grid xs={12} t={100}>
-                        <Switch>
-                            <Route
-                                exact
-                                path="/"
-                                render={() => <HomeContainer />}
-                            />
-                            <Route
-                                path="/admin"
-                                render={() => <AdminContainer />}
-                            />
-                        </Switch>
-                    </Grid>
+            <Grid container>
+                <Grid item xs={12}>
+                    <NavBar />
                 </Grid>
-            </Container>
+                <Grid item xs={12} t={100}>
+                    <Switch>
+                        <Route
+                            exact
+                            path="/"
+                            render={() => <HomeContainer />}
+                        />
+                        <Route
+                            path="/admin"
+                            render={() => <AdminContainer />}
+                        />
+                    </Switch>
+                </Grid>
+            </Grid>
         </>
     )
 }
