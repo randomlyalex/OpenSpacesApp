@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
     MapContainer,
     TileLayer,
@@ -24,6 +24,22 @@ function LocationMarker() {
 
     return position === null ? null : (
         <Marker position={position}>
+            <Popup>You are here</Popup>
+        </Marker>
+    )
+}
+
+function AddMarker() {
+    const [marker, setMarker] = useState(null)
+    const map = useMapEvents({
+        click(e) {
+            const newMarker = e.latlng
+            setMarker(newMarker)
+        },
+    })
+
+    return marker === null ? null : (
+        <Marker position={marker}>
             <Popup>You are here</Popup>
         </Marker>
     )
@@ -67,6 +83,7 @@ const LeafletMap = ({ pois }) => {
                     })
                 }
                 <LocationMarker />
+                <AddMarker />
             </MapContainer>
         </>
     )
