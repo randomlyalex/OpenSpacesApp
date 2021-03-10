@@ -31,8 +31,8 @@ public class PoiController {
     public ResponseEntity<List<Poi>> getAllPois(
             @RequestParam(name = "type", required = false) String type
     ){
+        if (type == "all" ){ return new ResponseEntity<>(poiRepository.findAll(), HttpStatus.OK);}
         if (type != null ){ return new ResponseEntity<>(poiRepository.findAllByType(type), HttpStatus.OK);}
-
         return new ResponseEntity<>(poiRepository.findAll(), HttpStatus.OK);
     }
 
