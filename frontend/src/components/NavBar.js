@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import HomeIcon from '@material-ui/icons/Home'
 import { MoreHoriz, Settings } from '@material-ui/icons'
-import { Typography } from '@material-ui/core'
+import { Typography, Container } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
@@ -21,33 +21,41 @@ const NavBar = () => {
 
     return (
         <>
-            <AppBar position="static">
-                <Toolbar>
-                    <Link to="/">
-                        <IconButton>
+            <Container component="main">
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton size="small" component={Link} to="/">
                             <HomeIcon />
-                            <Typography variant="h6" className={classes.title}>
+                            <Typography
+                                variant="button"
+                                className={classes.title}
+                            >
                                 Home
                             </Typography>
                         </IconButton>
-                    </Link>
 
-                    <IconButton disabled={true}>
-                        <MoreHoriz />
-                        <Typography variant="h6" className={classes.title}>
-                            Details
-                        </Typography>
-                    </IconButton>
-                    <Link to="/admin">
-                        <IconButton>
+                        <IconButton disabled={true} size="small">
+                            <MoreHoriz />
+                            <Typography
+                                variant="button"
+                                className={classes.title}
+                            >
+                                Details
+                            </Typography>
+                        </IconButton>
+
+                        <IconButton size="small" component={Link} to="/admin">
                             <Settings />
-                            <Typography variant="h6" className={classes.title}>
+                            <Typography
+                                variant="button"
+                                className={classes.title}
+                            >
                                 Admin
                             </Typography>
                         </IconButton>
-                    </Link>
-                </Toolbar>
-            </AppBar>
+                    </Toolbar>
+                </AppBar>
+            </Container>
         </>
     )
 }
