@@ -10,6 +10,7 @@ import { Link, Route } from 'react-router-dom'
 import LoginButton from './LoginButton'
 import LogOutButton from './LogOutButton'
 import {useAuth0} from '@auth0/auth0-react';
+import JsonInfo from '../containers/JsonInfo'
 
 
 const useStyles = makeStyles({
@@ -69,6 +70,7 @@ const NavBar = () => {
                         />
                         <LoginButton/>
                         <LogOutButton/>
+                        <JsonInfo/>
                     </Toolbar>
                 </AppBar>
             </Container>
