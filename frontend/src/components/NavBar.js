@@ -4,11 +4,14 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import HomeIcon from '@material-ui/icons/Home'
-import { MoreHoriz, Settings } from '@material-ui/icons'
-import { Typography, Container, Grid } from '@material-ui/core'
+import {
+    ExitToApp as ExitToAppIcon,
+    LockOpen as LockOpenIcon,
+    MoreHoriz,
+    Settings,
+} from '@material-ui/icons'
+import { Typography, Container, Grid, Tab } from '@material-ui/core'
 import { Link, Route } from 'react-router-dom'
-import LoginButton from './LoginButton'
-import LogOutButton from './LogOutButton'
 import { useAuth0 } from '@auth0/auth0-react'
 import JsonInfo from '../containers/JsonInfo'
 
@@ -22,17 +25,84 @@ const useStyles = makeStyles({
 const NavBar = () => {
     const classes = useStyles()
     const [value, setValue] = React.useState(0)
-
+    const { logout, user, loginWithRedirect, isAuthenticated } = useAuth0()
     return (
         <>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton size="small" component={Link} to="/">
-                        <HomeIcon />
-                        <Typography variant="button" className={classes.title}>
-                            Home
-                        </Typography>
-                    </IconButton>
+                    <Grid container spacing={1} justify="space-between">
+                        <Grid item justify="space-between">
+                            <Tab
+                                label="Home"
+                                size="small"
+                                component={Link}
+                                to="/"
+                                icon={<HomeIcon />}
+                            />
+                        </Grid>
+                        <Grid item justify="flex-end">
+                            <Route
+                                path="/admin"
+                                render={() => {
+                                    return (
+                                        <Tab
+                                            label="Admin"
+                                            size="small"
+                                            component={Link}
+                                            to="/admin"
+                                            icon={<Settings />}
+                                        />
+                                    )
+                                }}
+                            />
+                            {isAuthenticated ? (
+                                <>
+                                    <Tab
+                                        label={user.name}
+                                        size="small"
+                                        component={Link}
+                                        to="/user"
+                                        icon={
+                                            <img
+                                                src={user.picture}
+                                                alt={user.name}
+                                                width="30px"
+                                                style={{ borderRadius: 50 }}
+                                            />
+                                        }
+                                    />
+                                    <Tab
+                                        label="Logout"
+                                        size="small"
+                                        component={Link}
+                                        to="/admin"
+                                        icon={<ExitToAppIcon />}
+                                        onClick={() => {
+                                            logout()
+                                        }}
+                                    />
+                                </>
+                            ) : (
+                                <Tab
+                                    label="Login"
+                                    size="small"
+                                    component={Link}
+                                    to="/admin"
+                                    icon={<LockOpenIcon />}
+                                    onClick={() => {
+                                        loginWithRedirect()
+                                    }}
+                                />
+                            )}
+                        </Grid>
+                    </Grid>
+                </Toolbar>
+            </AppBar>
+            {/* 
+
+            <AppBar position="static">
+                <Toolbar>
+                    
 
                     <IconButton disabled={true} size="small">
                         <MoreHoriz />
@@ -40,31 +110,12 @@ const NavBar = () => {
                             Details
                         </Typography>
                     </IconButton>
-                    <Route
-                        path="/admin"
-                        render={() => {
-                            return (
-                                <IconButton
-                                    size="small"
-                                    component={Link}
-                                    to="/admin"
-                                >
-                                    <Settings />
-                                    <Typography
-                                        variant="button"
-                                        className={classes.title}
-                                    >
-                                        Admin
-                                    </Typography>
-                                </IconButton>
-                            )
-                        }}
-                    />
-                    <LoginButton />
-                    <LogOutButton />
-                    <JsonInfo />
+                    
+                    <SignInOutProfile />
+
+                    
                 </Toolbar>
-            </AppBar>
+            </AppBar> */}
         </>
     )
 }
