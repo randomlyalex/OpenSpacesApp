@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import AdminContainer from './AdminContainer'
 import HomeContainer from './HomeContainer'
+import UserAdminContainer from './UserAdminContainer'
 
 const MainContainer = () => {
     return (
@@ -12,7 +13,7 @@ const MainContainer = () => {
                 <Grid item xs={12}>
                     <NavBar />
                 </Grid>
-                <Grid item xs={12} t={100}>
+                <Grid item xs={12}>
                     <Switch>
                         <Route
                             exact
@@ -22,6 +23,35 @@ const MainContainer = () => {
                         <Route
                             path="/admin"
                             render={() => <AdminContainer />}
+                        />
+                        <Route
+                            path="/user"
+                            render={() => {
+                                return (
+                                    <>
+                                        <Grid container>
+                                            <Grid
+                                                item
+                                                xs={7}
+                                                // sm={6}
+                                                // md={8}
+                                                // lg={10}
+                                            >
+                                                <HomeContainer />
+                                            </Grid>
+                                            <Grid
+                                                item
+                                                xs={5}
+                                                // sm={6}
+                                                // md={4}
+                                                // lg={2}
+                                            >
+                                                <UserAdminContainer />
+                                            </Grid>
+                                        </Grid>
+                                    </>
+                                )
+                            }}
                         />
                     </Switch>
                 </Grid>
