@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton'
 import HomeIcon from '@material-ui/icons/Home'
 import { MoreHoriz, Settings } from '@material-ui/icons'
 import { Typography, Container } from '@material-ui/core'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 
 const useStyles = makeStyles({
     root: {
@@ -43,16 +43,26 @@ const NavBar = () => {
                                 Details
                             </Typography>
                         </IconButton>
-
-                        <IconButton size="small" component={Link} to="/admin">
-                            <Settings />
-                            <Typography
-                                variant="button"
-                                className={classes.title}
-                            >
-                                Admin
-                            </Typography>
-                        </IconButton>
+                        <Route
+                            path="/admin"
+                            render={() => {
+                                return (
+                                    <IconButton
+                                        size="small"
+                                        component={Link}
+                                        to="/admin"
+                                    >
+                                        <Settings />
+                                        <Typography
+                                            variant="button"
+                                            className={classes.title}
+                                        >
+                                            Admin
+                                        </Typography>
+                                    </IconButton>
+                                )
+                            }}
+                        />
                     </Toolbar>
                 </AppBar>
             </Container>
