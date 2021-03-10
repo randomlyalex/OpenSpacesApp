@@ -31,7 +31,7 @@ const NavBar = () => {
             <AppBar position="static">
                 <Toolbar>
                     <Grid container spacing={1} justify="space-between">
-                        <Grid item justify="space-between">
+                        <Grid item>
                             <Tab
                                 label="Home"
                                 size="small"
@@ -40,7 +40,8 @@ const NavBar = () => {
                                 icon={<HomeIcon />}
                             />
                         </Grid>
-                        <Grid item justify="flex-end">
+
+                        <Grid item>
                             <Route
                                 path="/admin"
                                 render={() => {
