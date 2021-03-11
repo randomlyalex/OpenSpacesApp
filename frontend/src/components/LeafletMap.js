@@ -9,7 +9,11 @@ import {
 import '../App.css'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
-import {Icon} from 'leaflet'
+import { Icon } from 'leaflet'
+import OpenSpaceMarker from '../001-tree.svg';
+import ToiletMarker from '../002-wc.svg';
+import TableMarker from '../003-table.svg';
+import BenchMarker from '../004-bench.svg';
 
 function LocationMarker() {
     const [position, setPosition] = useState(null)
@@ -31,10 +35,9 @@ function LocationMarker() {
 }
 
 
-
 function AddMarker() {
-
     
+
     const [marker, setMarker] = useState(null)
     const map = useMapEvents({
         click(e) {
@@ -54,48 +57,71 @@ function AddMarker() {
 const LeafletMap = ({ pois }) => {
     const [centreMap, setCentreMap] = useState([55.9533, -3.1883])
 
-    const toiletIcon = new Icon({
-        iconUrl: 'https://www.flaticon.com/svg/vstatic/svg/386/386189.svg?token=exp=1615479530~hmac=73dab02a30bf84aa0e07dbd36198551e',
-    iconSize:[30,30]
+    const toiletMarker = new Icon({
+        iconUrl: ToiletMarker,
+        iconSize: [30, 30]
     })
     const benchMarker = new Icon({
-        iconUrl: 'https://www.flaticon.com/svg/vstatic/svg/725/725940.svg?token=exp=1615479973~hmac=c715f29b005e1296ba58fc55a32730b3' ,
-        iconSize:[30,30]
+        iconUrl: BenchMarker,
+        iconSize: [30, 30]
     })
     const tableMarker = new Icon({
-        iconUrl: 'https://www.flaticon.com/svg/vstatic/svg/3564/3564625.svg?token=exp=1615479951~hmac=8355b666f35a62176998fe20753e44d4' ,
-        iconSize:[30,30]
+        iconUrl: TableMarker,
+        iconSize: [30, 30]
     })
     const openSpaceMarker = new Icon({
-        iconUrl: 'https://www.flaticon.com/svg/vstatic/svg/1175/1175062.svg?token=exp=1615479906~hmac=60869a233154b74dbd5b9da11c548671' ,
-        iconSize:[30,30]
+        iconUrl: OpenSpaceMarker,
+        iconSize: [30, 30]
     })
 
     const AllLoadedPois = () => {
-        return pois.map((poi) => {
-            if(poi.type === "bench" || poi.type === "table"){
-                return (
-                    <Marker key={poi.id} position={[poi.lat, poi.lon]}>
-                    <Popup>
-                        <h2>{poi.type}</h2>
-                        <p>Space For: {poi.capacity}</p>
-                        <p>Accessibility: {poi.accessibility}</p>
-                        <p>Sheltered?: {poi.sheltered.toString()}</p>
-                        <p>Privacy: {poi.privacy}</p>
-                    </Popup>
-                </Marker>
-            )
-        }else{ 
-        return (
-            <Marker key={poi.id} position={[poi.lat, poi.lon]}>
-                    <Popup>
-                        <h2>{poi.type}</h2>
-                        <p>Accessibility: {poi.accessibility}</p>
-                        <p>Privacy: {poi.privacy}</p>
-                    </Popup>
-                </Marker>
-        )
+
+        const dynamicMarker = (poi) => {
+            let icon = null
+        switch (poi.type) {
+            case 'bench':
+                icon = benchMarker
+                break
+            case 'table':
+                icon = tableMarker
+                break
+            case 'toilet':
+                icon = toiletMarker
+                break
+            case 'space':
+                icon = openSpaceMarker
+                break
+            }
+            return icon
         }
+
+        
+        return pois.map((poi) => {
+            if (poi.type === "bench" || poi.type === "table") {
+                return (
+                    <Marker key={poi.id} position={[poi.lat, poi.lon]}
+                    icon={dynamicMarker(poi)}>
+                        <Popup>
+                            <h2>{poi.type}</h2>
+                            <p>Space For: {poi.capacity}</p>
+                            <p>Accessibility: {poi.accessibility}</p>
+                            <p>Sheltered?: {poi.sheltered.toString()}</p>
+                            <p>Privacy: {poi.privacy}</p>
+                        </Popup>
+                    </Marker >
+                )
+            } else {
+                return (
+                    <Marker key={poi.id} position={[poi.lat, poi.lon]}
+                    icon={dynamicMarker(poi)}>
+                        <Popup>
+                            <h2>{poi.type}</h2>
+                            <p>Accessibility: {poi.accessibility}</p>
+                            <p>Privacy: {poi.privacy}</p>
+                        </Popup>
+                    </Marker>
+                )
+            }
         })
     }
 
