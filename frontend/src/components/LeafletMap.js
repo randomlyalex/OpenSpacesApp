@@ -50,15 +50,29 @@ const LeafletMap = ({ pois }) => {
 
     const AllLoadedPois = () => {
         return pois.map((poi) => {
-            return (
-                <Marker key={poi.id} position={[poi.lat, poi.lon]}>
+            if(poi.type === ("bench" || "table")){
+
+                return (
+                    <Marker key={poi.id} position={[poi.lat, poi.lon]}>
+                    <Popup>
+                        <h2>{poi.type}</h2>
+                        <p>Space For: {poi.capacity}</p>
+                        <p>Accessibility: {poi.accessibility}</p>
+                        <p>Sheltered?: {poi.sheltered.toString()}</p>
+                        <p>Privacy: {poi.privacy}</p>
+                    </Popup>
+                </Marker>
+            )
+        }return (
+            <Marker key={poi.id} position={[poi.lat, poi.lon]}>
                     <Popup>
                         <h2>{poi.type}</h2>
                         <p>Accessibility: {poi.accessibility}</p>
                         <p>Privacy: {poi.privacy}</p>
                     </Popup>
                 </Marker>
-            )
+        )
+
         })
     }
 
