@@ -1,27 +1,26 @@
-import React, { useState, } from 'react'
+import React, { useState, useRef } from 'react'
 import {
     MapContainer,
     TileLayer,
     Marker,
     Popup,
     useMapEvents,
-
 } from 'react-leaflet'
 import '../App.css'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
-import { SettingsInputAntennaTwoTone } from '@material-ui/icons'
-import PoiSubmitForm from './PoiSubmitForm'
-import Request from '../helpers/request'
 
-function UserLocationMarker() {
+function LocationMarker() {
     const [position, setPosition] = useState(null)
-    const map = useMapEvents(
-        {dblclick() 
-            {map.locate()}
-            ,locationfound(e) 
-            {setPosition(e.latlng);
-            map.flyTo(e.latlng, map.getZoom())},})
+    const map = useMapEvents({
+        dblclick() {
+            map.locate()
+        },
+        locationfound(e) {
+            setPosition(e.latlng)
+            map.flyTo(e.latlng, map.getZoom())
+        },
+    })
 
     return position === null ? null : (
         <Marker position={position}>
@@ -30,11 +29,7 @@ function UserLocationMarker() {
     )
 }
 
-
-
-function AddMarker({getLl}) {
-
-    
+function AddMarker() {
     const [marker, setMarker] = useState(null)
     const map = useMapEvents({
         click(e) {
@@ -42,30 +37,16 @@ function AddMarker({getLl}) {
             setMarker(newMarker)
         },
     })
-    if(marker != null){
-        getLl(marker.lat, marker.lng)
-    }else{
-        console.log("waiting for marker click")
-    }
+
     return marker === null ? null : (
         <Marker position={marker}>
-            <Popup>{marker.lat}, {marker.lng}</Popup>
+            <Popup>You are here</Popup>
         </Marker>
     )
 }
-//toggle add for = flase function to set toggleaddForm = !toggleAddForm 
+
 const LeafletMap = ({ pois }) => {
-
     const [centreMap, setCentreMap] = useState([55.9533, -3.1883])
-
-    const [latForForm, setLatForForm] = useState();
-    const [lonForForm, setlonForForm] = useState();
-
-    const getLatLngForForm = (lat, lng) => {
-        setLatForForm(lat)
-        setlonForForm(lng)
-        console.log(lat, lng)
-    }
 
     const AllLoadedPois = () => {
         return pois.map((poi) => {
@@ -73,39 +54,14 @@ const LeafletMap = ({ pois }) => {
                 <Marker key={poi.id} position={[poi.lat, poi.lon]}>
                     <Popup>
                         <h2>{poi.type}</h2>
-                        if(capacity in poi){<p>Space For: {poi.capacity}</p>}
+                        <p>Space For: {poi.capacity}</p>
                         <p>Accessibility: {poi.accessibility}</p>
                         <p>Privacy: {poi.privacy}</p>
-                        if(sheltered in poi) {<p>Is Sheltered? :{poi.sheltered.toString()}</p>}
+                        <p>Is Sheltered? :{poi.sheltered.toString()}</p>
                     </Popup>
                 </Marker>
             )
         })
-    }
-    
-    const serverUrl = process.env.REACT_APP_API_SERVER
-    const addPoi = (submittedPoi) => {
-        const request = new Request()
-        let endPoint = null
-        switch (submittedPoi.type) {
-            case 'bench':
-                endPoint = 'benches'
-                break
-            case 'table':
-                endPoint = 'tables'
-                break
-            case 'toilet':
-                endPoint = 'toilets'
-                break
-            case 'space':
-                endPoint = 'spaces'
-                break
-        }
-        if (endPoint != null) {
-            request.post(`${serverUrl}/api/${endPoint}`, submittedPoi)
-        }
-        console.log(endPoint)
-        console.log(submittedPoi)
     }
 
     return (
@@ -113,60 +69,20 @@ const LeafletMap = ({ pois }) => {
             <Typography variant="sub">
                 Double Click on the map to find your location
             </Typography>
-
-            <PoiSubmitForm
-            onPoiSubmit={(poi) => {
-                addPoi(poi)
-            }}
-            lat={latForForm}
-            lon={lonForForm}/>
-
             <MapContainer
                 center={centreMap}
                 zoom={15}
                 scrollWheelZoom={true}
                 doubleClickZoom={false}
-                
             >
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {/* {
-                    // why can't this is a map function up top?
-                    pois.map((poi) => {
-
-                        if(poi.type === ("bench" || "table")){
-
-                            return (
-                                <Marker key={poi.id} position={[poi.lat, poi.lon]}>
-                                <Popup>
-                                    <h2>{poi.type}</h2>
-                                    <p>Space For: {poi.capacity}</p>
-                                    <p>Accessibility: {poi.accessibility}</p>
-                                    <p>Privacy: {poi.privacy}</p>
-                                    <p>Is Sheltered?: {poi.sheltered.toString()}</p>
-                                </Popup>
-                            </Marker>
-                        )
-                    }else{
-                        return (
-                            <Marker key={poi.id} position={[poi.lat, poi.lon]}>
-                            <Popup>
-                                <h2>{poi.type}</h2>
-                                <p>Accessibility: {poi.accessibility}</p>
-                                <p>Privacy: {poi.privacy}</p>
-                            </Popup>
-                        </Marker>
-                    )
-                    }                  
-                    })
-                } */}
-                <UserLocationMarker />
-                <AddMarker getLl={getLatLngForForm}/>
-                <AllLoadedPois/>
+                <AllLoadedPois />
+                <LocationMarker />
+                <AddMarker />
             </MapContainer>
-
         </>
     )
 }
