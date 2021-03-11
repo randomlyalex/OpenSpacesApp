@@ -2,7 +2,6 @@
 
 import {
     Container,
-    CssBaseline,
     Avatar,
     Typography,
     Grid,
@@ -11,11 +10,8 @@ import {
     Checkbox,
     FormControlLabel,
     makeStyles,
-    Input,
     Select,
     MenuItem,
-    InputLabel,
-    FormControl,
 } from '@material-ui/core'
 import { AddLocation } from '@material-ui/icons'
 import React from 'react'
@@ -140,6 +136,7 @@ const PoiSubmitForm = ({ onPoiSubmit, lat, lon }) => {
                                     fullWidth
                                     type="number"
                                     name="capacity"
+                                    inputRef={register}
                                     label="Capacity"
                                     id="capacity"
                                 />

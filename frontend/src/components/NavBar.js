@@ -2,18 +2,11 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
 import HomeIcon from '@material-ui/icons/Home'
-import {
-    ExitToApp as ExitToAppIcon,
-    LockOpen as LockOpenIcon,
-    MoreHoriz,
-    Settings,
-} from '@material-ui/icons'
-import { Typography, Container, Grid, Tab } from '@material-ui/core'
+import { LockOpen as LockOpenIcon, Settings } from '@material-ui/icons'
+import { Grid, Tab } from '@material-ui/core'
 import { Link, Route } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
-import JsonInfo from '../containers/JsonInfo'
 
 const useStyles = makeStyles({
     root: {

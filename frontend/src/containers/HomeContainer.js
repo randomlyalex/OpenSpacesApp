@@ -1,5 +1,4 @@
 import {
-    Checkbox,
     Container,
     CssBaseline,
     FormControl,
@@ -7,9 +6,7 @@ import {
     FormLabel,
     Grid,
     Radio,
-    Select,
     RadioGroup,
-    Button,
     Slider,
     Typography,
 } from '@material-ui/core'
