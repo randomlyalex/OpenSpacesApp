@@ -36,6 +36,7 @@ const AdminContainer = () => {
                 }}
                 lat={0}
                 lon={0}
+                isAdmin
             />
         </div>
     )
