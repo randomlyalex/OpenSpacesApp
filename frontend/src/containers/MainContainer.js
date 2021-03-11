@@ -1,4 +1,5 @@
 import {
+    Button,
     Container,
     Divider,
     Drawer,
@@ -13,11 +14,16 @@ import {
     useTheme,
 } from '@material-ui/core'
 import {
+    BookmarkBorder,
     ChevronLeft as ChevronLeftIcon,
     ChevronRight as ChevronRightIcon,
     ExitToApp as ExitToAppIcon,
+    Queue,
+    StarBorder,
+    Stars,
+    ThumbsUpDown,
 } from '@material-ui/icons'
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import AdminContainer from './AdminContainer'
@@ -84,10 +90,21 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const MainContainer = () => {
-    const { logout, user, loginWithRedirect, isAuthenticated } = useAuth0()
+    const { logout } = useAuth0()
     const classes = useStyles()
     const theme = useTheme()
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = useState(false)
+    const [showAddPoiForm, setShowAddPoiForm] = useState(false)
+    const [filterUsersPoi, setFilterUsersPoi] = useState('all')
+
+    const handleShowAddPoiForm = () => {
+        setShowAddPoiForm(!showAddPoiForm)
+    }
+
+    const handleFilterUserPoi = (filterView) => {
+        if (filterView == filterUsersPoi) setFilterUsersPoi('all')
+        else setFilterUsersPoi(filterView)
+    }
 
     const handleDrawerOpen = () => {
         setOpen(true)
@@ -108,7 +125,12 @@ const MainContainer = () => {
                         <Route
                             exact
                             path="/"
-                            render={() => <HomeContainer />}
+                            render={() => (
+                                <HomeContainer
+                                    filterUsersPoi={filterUsersPoi}
+                                    showAddPoiForm={showAddPoiForm}
+                                />
+                            )}
                         />
                         <Route
                             path="/admin"
@@ -149,42 +171,59 @@ const MainContainer = () => {
                 <Divider />
                 <List>
                     <ListItem>
-                        <ListItemIcon></ListItemIcon>
-                        <ListItemText>My POIs</ListItemText>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemIcon></ListItemIcon>
-                        <ListItemText>Favourites</ListItemText>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemIcon></ListItemIcon>
-                        <ListItemText>Rated</ListItemText>
-                    </ListItem>
-                    {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
-                        (text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? (
-                                        <InboxIcon />
-                                    ) : (
-                                        <MailIcon />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        )
-                    )} */}
-                </List>
-                <Divider />
-                <List>
-                    {/* {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
+                        <IconButton onClick={handleShowAddPoiForm}>
                             <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                {showAddPoiForm ? (
+                                    <Queue color="secondary" />
+                                ) : (
+                                    <Queue />
+                                )}
                             </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))} */}
+                            <ListItemText>Add POI</ListItemText>
+                        </IconButton>
+                    </ListItem>
+                    <ListItem>
+                        <IconButton
+                            onClick={() => handleFilterUserPoi('allUserPoi')}
+                        >
+                            <ListItemIcon>
+                                {filterUsersPoi === 'allUserPoi' ? (
+                                    <BookmarkBorder color="secondary" />
+                                ) : (
+                                    <BookmarkBorder />
+                                )}
+                            </ListItemIcon>
+                            <ListItemText>My POIs</ListItemText>
+                        </IconButton>
+                    </ListItem>
+                    <ListItem>
+                        <IconButton
+                            onClick={() => handleFilterUserPoi('userFavPoi')}
+                        >
+                            <ListItemIcon>
+                                {filterUsersPoi === 'userFavPoi' ? (
+                                    <StarBorder color="secondary" />
+                                ) : (
+                                    <StarBorder />
+                                )}
+                            </ListItemIcon>
+                            <ListItemText>Favourites</ListItemText>
+                        </IconButton>
+                    </ListItem>
+                    <ListItem>
+                        <IconButton
+                            onClick={() => handleFilterUserPoi('userRatedPoi')}
+                        >
+                            <ListItemIcon>
+                                {filterUsersPoi === 'userRatedPoi' ? (
+                                    <ThumbsUpDown color="secondary" />
+                                ) : (
+                                    <ThumbsUpDown />
+                                )}
+                            </ListItemIcon>
+                            <ListItemText>Rated</ListItemText>
+                        </IconButton>
+                    </ListItem>
                 </List>
             </Drawer>
         </>
