@@ -9,6 +9,7 @@ import {
 import '../App.css'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
+import {Icon} from 'leaflet'
 
 function LocationMarker() {
     const [position, setPosition] = useState(null)
@@ -29,7 +30,11 @@ function LocationMarker() {
     )
 }
 
+
+
 function AddMarker() {
+
+    
     const [marker, setMarker] = useState(null)
     const map = useMapEvents({
         click(e) {
@@ -39,7 +44,8 @@ function AddMarker() {
     })
 
     return marker === null ? null : (
-        <Marker position={marker}>
+        <Marker position={marker}
+        >
             <Popup>You are here</Popup>
         </Marker>
     )
@@ -48,10 +54,26 @@ function AddMarker() {
 const LeafletMap = ({ pois }) => {
     const [centreMap, setCentreMap] = useState([55.9533, -3.1883])
 
+    const toiletIcon = new Icon({
+        iconUrl: 'https://www.flaticon.com/svg/vstatic/svg/386/386189.svg?token=exp=1615479530~hmac=73dab02a30bf84aa0e07dbd36198551e',
+    iconSize:[30,30]
+    })
+    const benchMarker = new Icon({
+        iconUrl: 'https://www.flaticon.com/svg/vstatic/svg/725/725940.svg?token=exp=1615479973~hmac=c715f29b005e1296ba58fc55a32730b3' ,
+        iconSize:[30,30]
+    })
+    const tableMarker = new Icon({
+        iconUrl: 'https://www.flaticon.com/svg/vstatic/svg/3564/3564625.svg?token=exp=1615479951~hmac=8355b666f35a62176998fe20753e44d4' ,
+        iconSize:[30,30]
+    })
+    const openSpaceMarker = new Icon({
+        iconUrl: 'https://www.flaticon.com/svg/vstatic/svg/1175/1175062.svg?token=exp=1615479906~hmac=60869a233154b74dbd5b9da11c548671' ,
+        iconSize:[30,30]
+    })
+
     const AllLoadedPois = () => {
         return pois.map((poi) => {
-            if(poi.type === ("bench" || "table")){
-
+            if(poi.type === "bench" || poi.type === "table"){
                 return (
                     <Marker key={poi.id} position={[poi.lat, poi.lon]}>
                     <Popup>
@@ -63,7 +85,8 @@ const LeafletMap = ({ pois }) => {
                     </Popup>
                 </Marker>
             )
-        }return (
+        }else{ 
+        return (
             <Marker key={poi.id} position={[poi.lat, poi.lon]}>
                     <Popup>
                         <h2>{poi.type}</h2>
@@ -72,7 +95,7 @@ const LeafletMap = ({ pois }) => {
                     </Popup>
                 </Marker>
         )
-
+        }
         })
     }
 
