@@ -9,15 +9,19 @@ import {
     Radio,
     Select,
     RadioGroup,
+    Button,
+    Slider,
+    Typography,
 } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import LeafletMap from '../components/LeafletMap'
 import Request from '../helpers/request'
 
 const HomeContainer = () => {
-    const serverUrl = process.env.REACT_APP_API_SERVER 
+    const serverUrl = process.env.REACT_APP_API_SERVER
     const [pois, setPois] = useState([])
     const [type, setType] = useState('all')
+    const [radius, setRadius] = useState(3)
 
     const getPois = () => {
         const request = new Request()
@@ -25,15 +29,6 @@ const HomeContainer = () => {
             setPois(data)
         })
     }
-
-    // const PoisList = pois.map((poi) => {
-    //     return (
-    //         <h3 key={poi.id}>
-    //             {poi.id} - {poi.type}
-    //             {poi.lat} - {poi.lon}
-    //         </h3>
-    //     )
-    // })
 
     useEffect(() => {
         getPois()
@@ -47,12 +42,16 @@ const HomeContainer = () => {
         setType(event.target.value)
     }
 
+    const handleRadiusSlide = (event) => {
+        setRadius(event.target.value)
+    }
+
     return (
         <>
-            <Container component="main">
+            <Container component="main" style={{ paddingTop: 50 }}>
                 <CssBaseline />
-                <Grid container spacing={0}>
-                    <Grid item xs={12}>
+                <Grid container alignContent="flex-end" justify="space-around">
+                    <Grid item>
                         <FormControl component="fieldset">
                             <FormLabel component="legend">
                                 Filter by Type
@@ -92,10 +91,20 @@ const HomeContainer = () => {
                             </RadioGroup>
                         </FormControl>
                     </Grid>
-
-                    <Grid item xs={12}>
-                        <LeafletMap pois={pois} />
+                    <Grid item>
+                        <Slider
+                            defaultValue={3}
+                            step={1}
+                            mix={0}
+                            max={20}
+                            valueLabelDisplay="on"
+                            onChange={handleRadiusSlide}
+                        />
+                        <Typography gutterBottom>Radius</Typography>
                     </Grid>
+                </Grid>
+                <Grid container>
+                    <LeafletMap pois={pois} />
                 </Grid>
             </Container>
         </>
