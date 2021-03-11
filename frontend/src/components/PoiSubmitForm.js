@@ -18,8 +18,10 @@ import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import '../App.css'
 
-const PoiSubmitForm = ({ onPoiSubmit, lat, lon }) => {
-    const { handleSubmit, register, control } = useForm()
+const PoiSubmitForm = ({ onPoiSubmit, lat, lon, isAdmin }) => {
+    const { handleSubmit, register, control, watch } = useForm()
+
+    const watchType = watch('type', 'bench')
 
     const onSubmit = (formData, event) => {
         onPoiSubmit(formData)
@@ -77,7 +79,11 @@ const PoiSubmitForm = ({ onPoiSubmit, lat, lon }) => {
                                     </MenuItem>
                                     <MenuItem value={'bench'}>Bench</MenuItem>
                                     <MenuItem value={'table'}>Table</MenuItem>
-                                    <MenuItem value={'toilet'}>Toilet</MenuItem>
+                                    {isAdmin && (
+                                        <MenuItem value={'toilet'}>
+                                            Toilet
+                                        </MenuItem>
+                                    )}
                                     <MenuItem value={'space'}>Space</MenuItem>
                                 </Controller>
                             </Grid>
@@ -130,31 +136,35 @@ const PoiSubmitForm = ({ onPoiSubmit, lat, lon }) => {
                                     name="accessibility"
                                 />
                             </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    variant="outlined"
-                                    fullWidth
-                                    type="number"
-                                    name="capacity"
-                                    inputRef={register}
-                                    label="Capacity"
-                                    id="capacity"
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <FormControlLabel
-                                    labelPlacement="start"
-                                    control={
-                                        <Controller
-                                            as={Checkbox}
-                                            control={control}
-                                            name="sheltered"
-                                            color="primary"
-                                        />
-                                    }
-                                    label="Sheltered"
-                                />
-                            </Grid>
+                            {watchType != 'space' && watchType != 'toilet' && (
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        variant="outlined"
+                                        fullWidth
+                                        type="number"
+                                        name="capacity"
+                                        inputRef={register}
+                                        label="Capacity"
+                                        id="capacity"
+                                    />
+                                </Grid>
+                            )}
+                            {watchType != 'toilet' && (
+                                <Grid item xs={12} sm={6}>
+                                    <FormControlLabel
+                                        labelPlacement="start"
+                                        control={
+                                            <Controller
+                                                as={Checkbox}
+                                                control={control}
+                                                name="sheltered"
+                                                color="primary"
+                                            />
+                                        }
+                                        label="Sheltered"
+                                    />
+                                </Grid>
+                            )}
                         </Grid>
                         <Button
                             type="submit"
