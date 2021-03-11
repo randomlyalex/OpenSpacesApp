@@ -208,28 +208,6 @@
         "_class": "com.codeclan.openspaces.models.Bench"
     },
     {
-        "createdBy": "admin",
-        "sheltered": false,
-        "favBy": [
-            "github|69213587",
-            "google-oauth2|103807025248003362123",
-            "github|42281043",
-            "google-oauth2|111660378271343209514"
-        ],
-        "lat": 55.951286,
-        "lon": -3.228330,
-        "accessibility": "Unrestricted",
-        "privacy": "Public",
-        "type": "bench",
-        "ratedBy": [
-            {
-                "user": "github|42281043",
-                "rating": 5
-            }
-        ],
-        "_class": "com.codeclan.openspaces.models.Bench"
-    },
-    {
         "createdBy": "github|69213587",
         "capacity": 4,
         "sheltered": false,
@@ -474,6 +452,7 @@
         "_class": "com.codeclan.openspaces.models.Toilet"
     },
     {
+        "createdBy": "google-oauth2|103807025248003362123",
         "sheltered": false,
         "favBy": [
             "github|69213587",
