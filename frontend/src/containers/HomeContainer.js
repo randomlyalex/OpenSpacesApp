@@ -18,7 +18,7 @@ const HomeContainer = () => {
     const serverUrl = process.env.REACT_APP_API_SERVER
     const [pois, setPois] = useState([])
     const [type, setType] = useState('all')
-    const [radius, setRadius] = useState(3)
+    const [sliderValue, setSliderValue] = useState(3)
 
     const getPois = () => {
         const request = new Request()
@@ -40,7 +40,7 @@ const HomeContainer = () => {
     }
 
     const handleRadiusSlide = (event) => {
-        setRadius(event.target.value)
+        setSliderValue(event.target.value)
     }
 
     return (
@@ -90,18 +90,21 @@ const HomeContainer = () => {
                     </Grid>
                     <Grid item>
                         <Slider
-                            defaultValue={3}
+                            defaultValue={5}
                             step={1}
                             mix={0}
                             max={20}
                             valueLabelDisplay="on"
-                            onChange={handleRadiusSlide}
+                            onChange={(event, value) => {
+                                event.target.value = value
+                                handleRadiusSlide(event)
+                            }}
                         />
                         <Typography gutterBottom>Radius</Typography>
                     </Grid>
                 </Grid>
                 <Grid container>
-                    <LeafletMap pois={pois} />
+                    <LeafletMap pois={pois} sliderValue={sliderValue} />
                 </Grid>
             </Container>
         </>
