@@ -54,10 +54,8 @@ const LeafletMap = ({ pois }) => {
                 <Marker key={poi.id} position={[poi.lat, poi.lon]}>
                     <Popup>
                         <h2>{poi.type}</h2>
-                        <p>Space For: {poi.capacity}</p>
                         <p>Accessibility: {poi.accessibility}</p>
                         <p>Privacy: {poi.privacy}</p>
-                        <p>Is Sheltered? :{poi.sheltered.toString()}</p>
                     </Popup>
                 </Marker>
             )
