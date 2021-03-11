@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     },
 })
 
-const NavBar = () => {
+const NavBar = ({ handleDrawerOpen }) => {
     const classes = useStyles()
     const [value, setValue] = React.useState(0)
     const { logout, user, loginWithRedirect, isAuthenticated } = useAuth0()
@@ -61,8 +61,6 @@ const NavBar = () => {
                                     <Tab
                                         label={user.name}
                                         size="small"
-                                        component={Link}
-                                        to="/user"
                                         icon={
                                             <img
                                                 src={user.picture}
@@ -71,16 +69,7 @@ const NavBar = () => {
                                                 style={{ borderRadius: 50 }}
                                             />
                                         }
-                                    />
-                                    <Tab
-                                        label="Logout"
-                                        size="small"
-                                        component={Link}
-                                        to="/admin"
-                                        icon={<ExitToAppIcon />}
-                                        onClick={() => {
-                                            logout()
-                                        }}
+                                        onClick={handleDrawerOpen}
                                     />
                                 </>
                             ) : (
