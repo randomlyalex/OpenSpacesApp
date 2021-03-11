@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 const NavBar = ({ handleDrawerOpen }) => {
     const classes = useStyles()
     const [value, setValue] = React.useState(0)
-    const { logout, user, loginWithRedirect, isAuthenticated } = useAuth0()
+    const { user, loginWithRedirect, isAuthenticated } = useAuth0()
     return (
         <>
             <AppBar position="static">
@@ -79,24 +79,6 @@ const NavBar = ({ handleDrawerOpen }) => {
                     </Grid>
                 </Toolbar>
             </AppBar>
-            {/* 
-
-            <AppBar position="static">
-                <Toolbar>
-                    
-
-                    <IconButton disabled={true} size="small">
-                        <MoreHoriz />
-                        <Typography variant="button" className={classes.title}>
-                            Details
-                        </Typography>
-                    </IconButton>
-                    
-                    <SignInOutProfile />
-
-                    
-                </Toolbar>
-            </AppBar> */}
         </>
     )
 }
