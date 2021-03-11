@@ -18,6 +18,7 @@ import ToiletMarker from '../002-wc.svg'
 import TableMarker from '../003-table.svg'
 import BenchMarker from '../004-bench.svg'
 import NewPoiMarker from '../global.svg'
+import { Cancel, CheckCircle } from '@material-ui/icons'
 
 const LeafletMap = ({ pois, sliderValue }) => {
     const { isAuthenticated } = useAuth0()
@@ -116,7 +117,10 @@ const LeafletMap = ({ pois, sliderValue }) => {
                             <h2>{poi.type}</h2>
                             <p>Space For: {poi.capacity}</p>
                             <p>Accessibility: {poi.accessibility}</p>
-                            <p>Sheltered?: {poi.sheltered.toString()}</p>
+                            <p>
+                                Sheltered?:{' '}
+                                {poi.sheltered ? <CheckCircle /> : <Cancel />}
+                            </p>
                             <p>Privacy: {poi.privacy}</p>
                         </Popup>
                     </Marker>
