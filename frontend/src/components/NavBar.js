@@ -76,8 +76,6 @@ const NavBar = ({ handleDrawerOpen }) => {
                                 <Tab
                                     label="Login"
                                     size="small"
-                                    component={Link}
-                                    to="/admin"
                                     icon={<LockOpenIcon />}
                                     onClick={() => {
                                         loginWithRedirect()
