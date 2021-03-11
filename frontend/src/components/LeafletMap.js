@@ -1,52 +1,61 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     MapContainer,
     TileLayer,
     Marker,
     Popup,
     useMapEvents,
+    LayerGroup,
+    Circle,
 } from 'react-leaflet'
 import '../App.css'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
+import { useAuth0 } from '@auth0/auth0-react'
 
-function LocationMarker() {
-    const [position, setPosition] = useState(null)
-    const map = useMapEvents({
-        dblclick() {
-            map.locate()
-        },
-        locationfound(e) {
-            setPosition(e.latlng)
-            map.flyTo(e.latlng, map.getZoom())
-        },
-    })
-
-    return position === null ? null : (
-        <Marker position={position}>
-            <Popup>You are here</Popup>
-        </Marker>
-    )
-}
-
-function AddMarker() {
-    const [marker, setMarker] = useState(null)
-    const map = useMapEvents({
-        click(e) {
-            const newMarker = e.latlng
-            setMarker(newMarker)
-        },
-    })
-
-    return marker === null ? null : (
-        <Marker position={marker}>
-            <Popup>You are here</Popup>
-        </Marker>
-    )
-}
-
-const LeafletMap = ({ pois }) => {
+const LeafletMap = ({ pois, sliderValue }) => {
+    const { isAuthenticated } = useAuth0()
     const [centreMap, setCentreMap] = useState([55.9533, -3.1883])
+
+    function AddMarker() {
+        const [marker, setMarker] = useState(null)
+
+        const map = useMapEvents({
+            click(e) {
+                const newMarker = e.latlng
+                setMarker(newMarker)
+            },
+        })
+
+        return marker === null ? null : isAuthenticated ? (
+            <Marker position={marker}>
+                <Popup>Add a POI Here</Popup>
+            </Marker>
+        ) : null
+    }
+
+    function LocationMarker() {
+        const [position, setPosition] = useState(null)
+        const map = useMapEvents({
+            dblclick() {
+                map.locate()
+            },
+            locationfound(e) {
+                setPosition(e.latlng)
+                map.flyTo(e.latlng, map.getZoom())
+            },
+        })
+
+        return position === null ? null : (
+            <LayerGroup>
+                <Circle
+                    center={position}
+                    pathOptions={{ color: 'blue', fillColor: 'blue' }}
+                    radius={sliderValue * 100}
+                />
+            </LayerGroup>
+        )
+    }
 
     const AllLoadedPois = () => {
         return pois.map((poi) => {
