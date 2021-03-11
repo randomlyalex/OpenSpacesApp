@@ -16,6 +16,15 @@ public class Poi {
     private String accessibility;
     private String privacy;
     private String type;
+    private String createdBy;
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 
     public Poi(double lat, double lon, String accessibility, String privacy) {
         this.lat = lat;
@@ -23,6 +32,7 @@ public class Poi {
         this.accessibility = accessibility;
         this.privacy = privacy;
         this.type = "poi";
+        this.createdBy = "Admin";
     }
 
     public String getType() {
