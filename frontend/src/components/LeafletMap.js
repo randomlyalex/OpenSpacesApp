@@ -21,7 +21,6 @@ function LocationMarker() {
             map.flyTo(e.latlng, map.getZoom())
         },
     })
-
     return position === null ? null : (
         <Marker position={position}>
             <Popup>You are here</Popup>
