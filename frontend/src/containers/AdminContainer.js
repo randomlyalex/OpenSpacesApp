@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import PoiSubmitForm from '../components/PoiSubmitForm'
 import Request from '../helpers/request'
 
