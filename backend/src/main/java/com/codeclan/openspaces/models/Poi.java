@@ -16,6 +16,9 @@ public class Poi {
     private String accessibility;
     private String privacy;
     private String type;
+    private ArrayList<Rating> ratedBy;
+
+
 
     public Poi(double lat, double lon, String accessibility, String privacy) {
         this.lat = lat;
@@ -23,6 +26,23 @@ public class Poi {
         this.accessibility = accessibility;
         this.privacy = privacy;
         this.type = "poi";
+        this.ratedBy = new ArrayList<>();
+    }
+//    public Poi(double lat, double lon, String accessibility, String privacy, ArrayList<Rating> ratedBy) {
+//        this.lat = lat;
+//        this.lon= lon;
+//        this.accessibility = accessibility;
+//        this.privacy = privacy;
+//        this.type = "poi";
+//        this.ratedBy = ratedBy;
+//    }
+
+    public ArrayList<Rating> getRatedBy() {
+        return ratedBy;
+    }
+
+    public void setRatedBy(ArrayList<Rating> ratedBy) {
+        this.ratedBy = ratedBy;
     }
 
     public String getType() {
