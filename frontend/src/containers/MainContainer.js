@@ -9,7 +9,6 @@ import {
     ListItemIcon,
     ListItemText,
     makeStyles,
-    Tab,
     Typography,
     useTheme,
 } from '@material-ui/core'
@@ -23,7 +22,6 @@ import { Route, Switch } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import AdminContainer from './AdminContainer'
 import HomeContainer from './HomeContainer'
-import UserAdminContainer from './UserAdminContainer'
 import { useAuth0 } from '@auth0/auth0-react'
 
 const drawerWidth = 240
