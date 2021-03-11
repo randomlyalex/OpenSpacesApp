@@ -30,6 +30,8 @@ function UserLocationMarker() {
     )
 }
 
+
+
 function AddMarker({getLl}) {
 
     
@@ -62,6 +64,23 @@ const LeafletMap = ({ pois }) => {
     const getLatLngForForm = (lat, lng) => {
         setLatForForm(lat)
         setlonForForm(lng)
+        console.log(lat, lng)
+    }
+
+    const AllLoadedPois = () => {
+        return pois.map((poi) => {
+            return (
+                <Marker key={poi.id} position={[poi.lat, poi.lon]}>
+                    <Popup>
+                        <h2>{poi.type}</h2>
+                        if(capacity in poi){<p>Space For: {poi.capacity}</p>}
+                        <p>Accessibility: {poi.accessibility}</p>
+                        <p>Privacy: {poi.privacy}</p>
+                        if(sheltered in poi) {<p>Is Sheltered? :{poi.sheltered.toString()}</p>}
+                    </Popup>
+                </Marker>
+            )
+        })
     }
     
     const serverUrl = process.env.REACT_APP_API_SERVER
@@ -113,7 +132,7 @@ const LeafletMap = ({ pois }) => {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {
+                {/* {
                     // why can't this is a map function up top?
                     pois.map((poi) => {
 
@@ -142,10 +161,10 @@ const LeafletMap = ({ pois }) => {
                     )
                     }                  
                     })
-                }
+                } */}
                 <UserLocationMarker />
                 <AddMarker getLl={getLatLngForForm}/>
-               
+                <AllLoadedPois/>
             </MapContainer>
 
         </>
