@@ -14,48 +14,56 @@ import OpenSpaceMarker from '../001-tree.svg';
 import ToiletMarker from '../002-wc.svg';
 import TableMarker from '../003-table.svg';
 import BenchMarker from '../004-bench.svg';
-
-function LocationMarker() {
-    const [position, setPosition] = useState(null)
-    const map = useMapEvents({
-        dblclick() {
-            map.locate()
-        },
-        locationfound(e) {
-            setPosition(e.latlng)
-            map.flyTo(e.latlng, map.getZoom())
-        },
-    })
-
-    return position === null ? null : (
-        <Marker position={position}>
-            <Popup>You are here</Popup>
-        </Marker>
-    )
-}
+import NewPoiMarker from '../global.svg';
 
 
-function AddMarker() {
-    
-
-    const [marker, setMarker] = useState(null)
-    const map = useMapEvents({
-        click(e) {
-            const newMarker = e.latlng
-            setMarker(newMarker)
-        },
-    })
-
-    return marker === null ? null : (
-        <Marker position={marker}
-        >
-            <Popup>You are here</Popup>
-        </Marker>
-    )
-}
 
 const LeafletMap = ({ pois }) => {
     const [centreMap, setCentreMap] = useState([55.9533, -3.1883])
+
+    function LocationMarker() {
+        const [position, setPosition] = useState(null)
+        const map = useMapEvents({
+            dblclick() {
+                map.locate()
+            },
+            locationfound(e) {
+                setPosition(e.latlng)
+                map.flyTo(e.latlng, map.getZoom())
+            },
+        })
+    
+        return position === null ? null : (
+            <Marker position={position}>
+                <Popup>You are here</Popup>
+            </Marker>
+        )
+    }
+    
+    
+    function AddMarker() {
+
+        const newPoiMarker = new Icon({
+            iconUrl: NewPoiMarker,
+            iconSize:[30,30]
+        })
+        
+    
+        const [marker, setMarker] = useState(null)
+        const map = useMapEvents({
+            click(e) {
+                const newMarker = e.latlng
+                setMarker(newMarker)
+            },
+        })
+    
+        return marker === null ? null : (
+            <Marker position={marker}
+            icon={newPoiMarker}>
+                <Popup>You are here</Popup>
+            </Marker>
+        )
+    }
 
     const toiletMarker = new Icon({
         iconUrl: ToiletMarker,
