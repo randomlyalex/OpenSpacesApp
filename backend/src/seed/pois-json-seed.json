@@ -1,0 +1,501 @@
+[
+    {
+        "createdBy": "github|69213587",
+        "capacity": 3,
+        "sheltered": true,
+        "favBy": [
+            "github|42281043",
+            "google-oauth2|111660378271343209514"
+        ],
+        "lat": 55.955247,
+        "lon": -3.183197,
+        "accessibility": "Steps to entry",
+        "privacy": "Restricted",
+        "type": "bench",
+        "ratedBy": [
+            {
+                "user": "google-oauth2|103807025248003362123",
+                "rating": 3
+            },
+            {
+                "user": "google-oauth2|111660378271343209514",
+                "rating": 4
+            },
+            {
+                "user": "github|42281043",
+                "rating": 5.0
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Bench"
+    },
+    {
+        "createdBy": "github|69213587",
+        "capacity": 3,
+        "sheltered": false,
+        "favBy": [
+            "github|42281043",
+            "google-oauth2|111660378271343209514"
+        ],
+        "lat": 55.959390,
+        "lon": -3.175281,
+        "accessibility": "Unrestricted",
+        "privacy": "Public",
+        "type": "bench",
+        "ratedBy": [],
+        "_class": "com.codeclan.openspaces.models.Bench"
+    },
+    {
+        "createdBy": "google-oauth2|103807025248003362123",
+        "capacity": 3,
+        "sheltered": false,
+        "favBy": [],
+        "lat": 55.955742,
+        "lon": -3.196078,
+        "accessibility": "Steps to 2nd floor",
+        "privacy": "Public",
+        "type": "bench",
+        "ratedBy": [
+            {
+                "user": "github|42281043",
+                "rating": 4
+            },
+            {
+                "user": "google-oauth2|111660378271343209514",
+                "rating": 5
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Bench"
+    },
+    {
+        "createdBy": "google-oauth2|103807025248003362123",
+        "capacity": 3,
+        "sheltered": false,
+        "favBy": [],
+        "lat": 55.975359,
+        "lon": -3.176885,
+        "accessibility": "Unrestricted",
+        "privacy": "Public",
+        "type": "bench",
+        "ratedBy": [
+            {
+                "user": "github|69213587",
+                "rating": 4
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Bench"
+    },
+    {
+        "createdBy": "github|42281043",
+        "capacity": 4,
+        "sheltered": true,
+        "favBy": [
+            "google-oauth2|103807025248003362123",
+            "google-oauth2|111660378271343209514"
+        ],
+        "lat": 55.970690,
+        "lon": -3.164600,
+        "accessibility": "Unrestricted",
+        "privacy": "Restricted",
+        "type": "bench",
+        "ratedBy": [
+            {
+                "user": "github|69213587",
+                "rating": 3
+            },
+            {
+                "user": "google-oauth2|103807025248003362123",
+                "rating": 3
+            },
+            {
+                "user": "github|42281043",
+                "rating": 3
+            },
+            {
+                "user": "google-oauth2|111660378271343209514",
+                "rating": 3
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Bench"
+    },
+    {
+        "createdBy": "github|42281043",
+        "capacity": 4,
+        "sheltered": false,
+        "favBy": [
+            "github|69213587"
+        ],
+        "lat": 55.979245,
+        "lon": -3.176918,
+        "accessibility": "Unrestricted",
+        "privacy": "Public",
+        "type": "bench",
+        "ratedBy": [
+            {
+                "user": "github|69213587",
+                "rating": 1
+            },
+            {
+                "user": "google-oauth2|103807025248003362123",
+                "rating": 1
+            },
+            {
+                "user": "github|42281043",
+                "rating": 2
+            },
+            {
+                "user": "google-oauth2|111660378271343209514",
+                "rating": 1
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Bench"
+    },
+    {
+        "createdBy": "google-oauth2|111660378271343209514",
+        "capacity": 3,
+        "sheltered": false,
+        "favBy": [],
+        "lat": 55.972150,
+        "lon": -3.194101,
+        "accessibility": "Unrestricted",
+        "privacy": "Public",
+        "type": "bench",
+        "ratedBy": [
+            {
+                "user": "google-oauth2|111660378271343209514",
+                "rating": 3
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Bench"
+    },
+    {
+        "createdBy": "google-oauth2|111660378271343209514",
+        "capacity": 2,
+        "sheltered": false,
+        "favBy": [],
+        "lat": 55.941002,
+        "lon": -3.188815,
+        "accessibility": "Uneven surface",
+        "privacy": "Public",
+        "type": "bench",
+        "ratedBy": [
+            {
+                "user": "github|42281043",
+                "rating": 2
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Bench"
+    },
+    {
+        "createdBy": "google-oauth2|111660378271343209514",
+        "capacity": 3,
+        "sheltered": false,
+        "favBy": [],
+        "lat": 55.940040,
+        "lon": -3.201382,
+        "accessibility": "Unrestricted",
+        "privacy": "Public",
+        "type": "bench",
+        "ratedBy": [
+            {
+                "user": "google-oauth2|103807025248003362123",
+                "rating": 2
+            },
+            {
+                "user": "google-oauth2|111660378271343209514",
+                "rating": 1
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Bench"
+    },
+    {
+        "createdBy": "admin",
+        "sheltered": false,
+        "favBy": [
+            "github|69213587",
+            "google-oauth2|103807025248003362123",
+            "github|42281043",
+            "google-oauth2|111660378271343209514"
+        ],
+        "lat": 55.951286,
+        "lon": -3.228330,
+        "accessibility": "Unrestricted",
+        "privacy": "Public",
+        "type": "bench",
+        "ratedBy": [
+            {
+                "user": "github|42281043",
+                "rating": 5
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Bench"
+    },
+    {
+        "createdBy": "github|69213587",
+        "capacity": 4,
+        "sheltered": false,
+        "favBy": [
+            "google-oauth2|111660378271343209514"
+        ],
+        "lat": 55.941043,
+        "lon": -3.194796,
+        "accessibility": "uneven surface",
+        "privacy": "public",
+        "type": "table",
+        "ratedBy": [
+            {
+                "user": "github|69213587",
+                "rating": 5
+            },
+            {
+                "user": "google-oauth2|103807025248003362123",
+                "rating": 3
+            },
+            {
+                "user": "github|42281043",
+                "rating": 5
+            },
+            {
+                "user": "google-oauth2|111660378271343209514",
+                "rating": 3
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Table"
+    },
+    {
+        "createdBy": "github|69213587",
+        "capacity": 6,
+        "sheltered": false,
+        "favBy": [
+            "github|42281043",
+            "google-oauth2|111660378271343209514"
+        ],
+        "lat": 55.954019,
+        "lon": -3.162528,
+        "accessibility": "steps to access",
+        "privacy": "private",
+        "type": "table",
+        "ratedBy": [
+            {
+                "user": "github|69213587",
+                "rating": 1
+            },
+            {
+                "user": "google-oauth2|103807025248003362123",
+                "rating": 1
+            },
+            {
+                "user": "github|42281043",
+                "rating": 1
+            },
+            {
+                "user": "google-oauth2|111660378271343209514",
+                "rating": 1
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Table"
+    },
+    {
+        "createdBy": "google-oauth2|103807025248003362123",
+        "capacity": 4,
+        "sheltered": true,
+        "favBy": [
+            "github|69213587"
+        ],
+        "lat": 55.957445,
+        "lon": -3.178547,
+        "accessibility": "unrestricted",
+        "privacy": "public",
+        "type": "table",
+        "ratedBy": [
+            {
+                "user": "github|69213587",
+                "rating": 3
+            },
+            {
+                "user": "google-oauth2|103807025248003362123",
+                "rating": 3
+            },
+            {
+                "user": "github|42281043",
+                "rating": 3
+            },
+            {
+                "user": "google-oauth2|111660378271343209514",
+                "rating": 3
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Table"
+    },
+    {
+        "createdBy": "google-oauth2|111660378271343209514",
+        "capacity": 6,
+        "sheltered": true,
+        "favBy": [
+            "github|69213587",
+            "google-oauth2|103807025248003362123"
+        ],
+        "lat": 55.961601,
+        "lon": -3.160030,
+        "accessibility": "unrestricted",
+        "privacy": "public",
+        "type": "table",
+        "ratedBy": [],
+        "_class": "com.codeclan.openspaces.models.Table"
+    },
+    {
+        "createdBy": "admin",
+        "capacity": 4,
+        "sheltered": false,
+        "favBy": [
+            "github|69213587",
+            "google-oauth2|103807025248003362123",
+            "github|42281043",
+            "google-oauth2|111660378271343209514"
+        ],
+        "lat": 55.970547,
+        "lon": -3.155478,
+        "accessibility": "uneven surfaces",
+        "privacy": "public",
+        "type": "table",
+        "ratedBy": [
+            {
+                "user": "github|69213587",
+                "rating": 4
+            },
+            {
+                "user": "google-oauth2|103807025248003362123",
+                "rating": 3
+            },
+            {
+                "user": "github|42281043",
+                "rating": 3
+            },
+            {
+                "user": "google-oauth2|111660378271343209514",
+                "rating": 2
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Table"
+    },
+    {
+        "createdBy": "admin",
+        "lat": 55.974420,
+        "lon": -3.177612,
+        "accessibility": "disabled access",
+        "privacy": "public",
+        "type": "toilet",
+        "ratedBy": [
+            {
+                "user": "github|69213587",
+                "rating": 1
+            },
+            {
+                "user": "google-oauth2|103807025248003362123",
+                "rating": 1
+            },
+            {
+                "user": "github|42281043",
+                "rating": 1
+            },
+            {
+                "user": "google-oauth2|111660378271343209514",
+                "rating": 1
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Toilet"
+    },
+    {
+        "createdBy": "admin",
+        "lat": 55.958304,
+        "lon": -3.208235,
+        "accessibility": "disabled access",
+        "privacy": "public",
+        "type": "toilet",
+        "ratedBy": [
+            {
+                "user": "github|69213587",
+                "rating": 2
+            },
+            {
+                "user": "google-oauth2|103807025248003362123",
+                "rating": 1
+            },
+            {
+                "user": "github|42281043",
+                "rating": 2
+            },
+            {
+                "user": "google-oauth2|111660378271343209514",
+                "rating": 1
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Toilet"
+    },
+    {
+        "createdBy": "admin",
+        "lat": 55.940889,
+        "lon": -3.183089,
+        "accessibility": "disabled access",
+        "privacy": "public",
+        "type": "toilet",
+        "ratedBy": [
+            {
+                "user": "github|69213587",
+                "rating": 1
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Toilet"
+    },
+    {
+        "createdBy": "admin",
+        "lat": 55.942516,
+        "lon": -3.191474,
+        "accessibility": "disabled access",
+        "privacy": "public",
+        "type": "toilet",
+        "ratedBy": [
+            {
+                "user": "github|69213587",
+                "rating": 1
+            },
+            {
+                "user": "google-oauth2|103807025248003362123",
+                "rating": 3
+            },
+            {
+                "user": "github|42281043",
+                "rating": 2
+            },
+            {
+                "user": "google-oauth2|111660378271343209514",
+                "rating": 2
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Toilet"
+    },
+    {
+        "sheltered": false,
+        "favBy": [
+            "github|69213587",
+            "google-oauth2|103807025248003362123",
+            "github|42281043",
+            "google-oauth2|111660378271343209514"
+        ],
+        "lat": 55.971088,
+        "lon": -3.191191,
+        "accessibility": "4",
+        "privacy": "4",
+        "type": "space",
+        "ratedBy": [
+            {
+                "user": "github|69213587",
+                "rating": 5
+            },
+            {
+                "user": "github|42281043",
+                "rating": 5
+            }
+        ],
+        "_class": "com.codeclan.openspaces.models.Space"
+    }
+]
