@@ -18,6 +18,8 @@ import {
     ChevronLeft as ChevronLeftIcon,
     ChevronRight as ChevronRightIcon,
     ExitToApp as ExitToAppIcon,
+    ExpandLess,
+    ExpandMore,
     Queue,
     StarBorder,
     Stars,
@@ -29,6 +31,7 @@ import NavBar from '../components/NavBar'
 import AdminContainer from './AdminContainer'
 import HomeContainer from './HomeContainer'
 import { useAuth0 } from '@auth0/auth0-react'
+import JsonInfo from './JsonInfo'
 
 const drawerWidth = 240
 
@@ -96,6 +99,11 @@ const MainContainer = () => {
     const [open, setOpen] = useState(false)
     const [showAddPoiForm, setShowAddPoiForm] = useState(false)
     const [filterUsersPoi, setFilterUsersPoi] = useState('all')
+    const [showJson, setShowJson] = useState(false)
+
+    const handleShowJson = () => {
+        setShowJson(!showJson)
+    }
 
     const handleShowAddPoiForm = () => {
         setShowAddPoiForm(!showAddPoiForm)
@@ -138,6 +146,18 @@ const MainContainer = () => {
                         />
                     </Switch>
                 </Grid>
+            </Grid>
+            <Grid container justify="flex-end">
+                {showJson ? (
+                    <Button onClick={handleShowJson} startIcon={<ExpandLess />}>
+                        Hide JSON
+                    </Button>
+                ) : (
+                    <Button onClick={handleShowJson} startIcon={<ExpandMore />}>
+                        Show JSON
+                    </Button>
+                )}
+                {showJson && <JsonInfo></JsonInfo>}
             </Grid>
             <Drawer
                 className={classes.drawer}
