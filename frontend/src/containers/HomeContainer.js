@@ -23,7 +23,7 @@ const HomeContainer = ({ showAddPoiForm, filterUsersPoi }) => {
     const { user, isAuthenticated } = useAuth0()
     const [pois, setPois] = useState([])
     const [type, setType] = useState('all')
-    const [sliderValue, setSliderValue] = useState(3)
+    const [sliderValue, setSliderValue] = useState(5)
     const [showMap, setShowMap] = useState(true)
     const [clickedMapLatLng, setClickedMapLatLng] = useState({
         lat: 55,
