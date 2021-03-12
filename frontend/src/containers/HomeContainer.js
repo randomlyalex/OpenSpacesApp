@@ -19,12 +19,44 @@ import Request from '../helpers/request'
 import { useAuth0 } from '@auth0/auth0-react'
 
 const HomeContainer = ({ showAddPoiForm, filterUsersPoi }) => {
-    const { user, isAuthenticated } = useAuth0()
     const serverUrl = process.env.REACT_APP_API_SERVER
+    const { user, isAuthenticated } = useAuth0()
     const [pois, setPois] = useState([])
     const [type, setType] = useState('all')
     const [sliderValue, setSliderValue] = useState(3)
     const [showMap, setShowMap] = useState(true)
+    const [clickedMapLatLng, setClickedMapLatLng] = useState({
+        lat: 55,
+        lng: -3,
+    })
+
+    const addPoiHome = (submittedPoi) => {
+        const request = new Request()
+        let endPoint = null
+        switch (submittedPoi.type) {
+            case 'bench':
+                endPoint = 'benches'
+                break
+            case 'table':
+                endPoint = 'tables'
+                break
+            case 'toilet':
+                endPoint = 'toilets'
+                break
+            case 'space':
+                endPoint = 'spaces'
+                break
+        }
+        if (endPoint != null) {
+            request.post(`${serverUrl}/api/${endPoint}`, submittedPoi)
+        }
+        console.log(endPoint)
+        console.log(submittedPoi)
+    }
+
+    const handleClickMapCallback = (clickedMarker) => {
+        setClickedMapLatLng(clickedMarker)
+    }
 
     const handleShowMap = () => {
         setShowMap(!showMap)
@@ -86,7 +118,13 @@ const HomeContainer = ({ showAddPoiForm, filterUsersPoi }) => {
             <Container component="main" style={{ paddingTop: 50 }}>
                 {showAddPoiForm && (
                     <Grid container>
-                        <PoiSubmitForm />
+                        <PoiSubmitForm
+                            lat={clickedMapLatLng.lat}
+                            lon={clickedMapLatLng.lng}
+                            onPoiSubmit={(poi) => {
+                                addPoiHome(poi)
+                            }}
+                        />
                     </Grid>
                 )}
                 <Grid container alignContent="flex-end" justify="space-around">
@@ -164,7 +202,12 @@ const HomeContainer = ({ showAddPoiForm, filterUsersPoi }) => {
                 </Grid>
                 {showMap && (
                     <Grid container>
-                        <LeafletMap pois={pois} sliderValue={sliderValue} />
+                        <LeafletMap
+                            handleClickMapCallback={handleClickMapCallback}
+                            clickedMapLatLng={clickedMapLatLng}
+                            pois={pois}
+                            sliderValue={sliderValue}
+                        />
                     </Grid>
                 )}
             </Container>
