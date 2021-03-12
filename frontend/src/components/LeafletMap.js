@@ -20,9 +20,15 @@ import BenchMarker from '../004-bench.svg'
 import NewPoiMarker from '../global.svg'
 import { Cancel, CheckCircle } from '@material-ui/icons'
 
-const LeafletMap = ({ pois, sliderValue }) => {
+const LeafletMap = ({
+    pois,
+    sliderValue,
+    handleClickMapCallback,
+    clickedMapLatLng,
+}) => {
     const { isAuthenticated } = useAuth0()
     const [centreMap, setCentreMap] = useState([55.9533, -3.1883])
+    const [marker, setMarker] = useState(null)
 
     function LocationMarker() {
         const [position, setPosition] = useState(null)
@@ -53,16 +59,15 @@ const LeafletMap = ({ pois, sliderValue }) => {
             iconSize: [30, 30],
         })
 
-        const [marker, setMarker] = useState(null)
         const map = useMapEvents({
             click(e) {
                 const newMarker = e.latlng
-                setMarker(newMarker)
+                handleClickMapCallback(newMarker)
             },
         })
 
-        return marker === null ? null : isAuthenticated ? (
-            <Marker position={marker} icon={newPoiMarker}>
+        return clickedMapLatLng === null ? null : isAuthenticated ? (
+            <Marker position={clickedMapLatLng} icon={newPoiMarker}>
                 <Popup>Add a POI Here</Popup>
             </Marker>
         ) : null
