@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import HomeIcon from '@material-ui/icons/Home'
 import { LockOpen as LockOpenIcon, Settings } from '@material-ui/icons'
-import { Grid, Tab } from '@material-ui/core'
+import { Grid, Tab, Typography } from '@material-ui/core'
 import { Link, Route } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -32,6 +32,9 @@ const NavBar = ({ handleDrawerOpen }) => {
                                 to="/"
                                 icon={<HomeIcon />}
                             />
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="h5"> OPEN SPACES</Typography>
                         </Grid>
 
                         <Grid item>
