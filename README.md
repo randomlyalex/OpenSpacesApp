@@ -49,8 +49,29 @@ TBC to deploy
 ## Screenshots
 
 #### Animated
+![Use of main app](https://github.com/randomlyalex/OpenSpacesApp/blob/main/screenshots/mg9HuOX0mO.gif)
 
 ## Static
+Homepage:
+
+![Main Page](https://github.com/randomlyalex/OpenSpacesApp/blob/main/screenshots/Screenshot%202021-03-18%20at%2019.58.18.png)
+
+Location Aware:
+
+![Location Aware](https://github.com/randomlyalex/OpenSpacesApp/blob/main/screenshots/Screenshot%202021-03-18%20at%2019.59.24.png)
+
+Side Drawer available to logged in users only:
+
+![MUI Side Drawer](https://github.com/randomlyalex/OpenSpacesApp/blob/main/screenshots/Screenshot%202021-03-18%20at%2019.58.42.png)
+
+Public main use overall filter:
+
+![Main public use filter view](https://github.com/randomlyalex/OpenSpacesApp/blob/main/screenshots/Screenshot%202021-03-18%20at%2019.58.27.png)
+
+Filter select your own, fav or rated POI's:
+
+![Logged in Filter View](https://github.com/randomlyalex/OpenSpacesApp/blob/main/screenshots/Screenshot%202021-03-18%20at%2019.59.02.png?raw=true)
+
 
 
 #### Client:
