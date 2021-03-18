@@ -6,7 +6,7 @@ Original Brief given [here](https://github.com/randomlyalex-codeclan/OpenSpacesA
 
 [Quick Pres on the project](https://docs.google.com/presentation/d/136gyZ701Z4ZlMoVBJ7lv_s6oZeflgGpfvWuPWa5XHWM/edit?usp=sharing)
 
-## OpenSpacesApp Web App | MERN
+## OpenSpacesApp Web App | Mongo, Java (Spring) and ReactJS
 
 An App designed to help people find nice places to meet safely outside in Covid times.  Built over the space of 5 days from planning to presentation.
 
