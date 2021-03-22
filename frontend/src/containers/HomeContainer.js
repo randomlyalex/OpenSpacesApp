@@ -17,6 +17,7 @@ import LeafletMap from '../components/LeafletMap'
 import PoiSubmitForm from '../components/PoiSubmitForm'
 import Request from '../helpers/request'
 import { useAuth0 } from '@auth0/auth0-react'
+import POIList from '../components/POIList'
 
 const HomeContainer = ({ showAddPoiForm, filterUsersPoi }) => {
     const serverUrl = process.env.REACT_APP_API_SERVER
@@ -136,6 +137,7 @@ const HomeContainer = ({ showAddPoiForm, filterUsersPoi }) => {
                             <RadioGroup
                                 row
                                 aria-label="gender"
+                                size="medium"
                                 name="type"
                                 value={type}
                                 onChange={handleRadio}
@@ -182,25 +184,26 @@ const HomeContainer = ({ showAddPoiForm, filterUsersPoi }) => {
                         />
                         <Typography gutterBottom>Radius</Typography>
                     </Grid>
+                    <Grid item>
+                        {showMap ? (
+                            <Button
+                                onClick={handleShowMap}
+                                startIcon={<ExpandLess />}
+                            >
+                                Hide Map
+                            </Button>
+                        ) : (
+                            <Button
+                                onClick={handleShowMap}
+                                startIcon={<ExpandMore />}
+                            >
+                                Show Map
+                            </Button>
+                        )}
+                    </Grid>
                 </Grid>
-                <Grid container justify="flex-end">
-                    {showMap ? (
-                        <Button
-                            onClick={handleShowMap}
-                            startIcon={<ExpandLess />}
-                        >
-                            Hide Map
-                        </Button>
-                    ) : (
-                        <Button
-                            onClick={handleShowMap}
-                            startIcon={<ExpandMore />}
-                        >
-                            Show Map
-                        </Button>
-                    )}
-                </Grid>
-                {showMap && (
+
+                {showMap ? (
                     <Grid container>
                         <LeafletMap
                             handleClickMapCallback={handleClickMapCallback}
@@ -208,6 +211,10 @@ const HomeContainer = ({ showAddPoiForm, filterUsersPoi }) => {
                             pois={pois}
                             sliderValue={sliderValue}
                         />
+                    </Grid>
+                ) : (
+                    <Grid container>
+                        <POIList pois={pois} />
                     </Grid>
                 )}
             </Container>
