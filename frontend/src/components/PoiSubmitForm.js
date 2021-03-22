@@ -17,10 +17,11 @@ import { AddLocation } from '@material-ui/icons'
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import '../App.css'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const PoiSubmitForm = ({ onPoiSubmit, lat, lon, isAdmin }) => {
     const { handleSubmit, register, control, watch } = useForm()
-
+    const { user, isAuthenticated } = useAuth0()
     const watchType = watch('type', 'bench')
 
     const onSubmit = (formData, event) => {
@@ -65,6 +66,22 @@ const PoiSubmitForm = ({ onPoiSubmit, lat, lon, isAdmin }) => {
                         noValidate
                         onSubmit={handleSubmit(onSubmit)}
                     >
+                        {isAuthenticated ? (
+                            <input
+                                type="hidden"
+                                name="createdBy"
+                                defaultValue={user.sub}
+                                ref={register}
+                            />
+                        ) : (
+                            <input
+                                type="hidden"
+                                name="createdBy"
+                                defaultValue="admin"
+                                ref={register}
+                            />
+                        )}
+
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Controller
