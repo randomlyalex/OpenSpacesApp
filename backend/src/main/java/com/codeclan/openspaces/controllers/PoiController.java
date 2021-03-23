@@ -54,7 +54,7 @@ public class PoiController {
     }
 //READ
     @GetMapping(value = "/pois")
-    public ResponseEntity<List<Poi>> getAllPois(
+    public ResponseEntity<List<Poi>> getPoisByType(
             @RequestParam(name = "type", required = false) String type
     ){
         if (type.equals("all") ){ return new ResponseEntity<>(poiRepository.findAll(), HttpStatus.OK);}
@@ -67,6 +67,16 @@ public class PoiController {
 
 
 //DELETE
+
+    @GetMapping(value = "/pois")
+    public ResponseEntity<List<Poi>> deletePoiById(
+            @RequestParam(name = "type", required = false) String type
+    ){
+        if (type.equals("all") ){ return new ResponseEntity<>(poiRepository.findAll(), HttpStatus.OK);}
+        if (type != null ){ return new ResponseEntity<>(poiRepository.findAllByType(type), HttpStatus.OK);}
+        return new ResponseEntity<>(poiRepository.findAll(), HttpStatus.OK);
+    }
+
 
 
 }
