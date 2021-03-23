@@ -202,6 +202,8 @@ const GMap = ({
   if (!isLoaded) return 'Loading Maps'
   return (
     <div className="gMap-container">
+      <Locate panTo={panTo} />
+      {/*^^^ button for locate me! ^^^*/}
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={12}
@@ -210,7 +212,6 @@ const GMap = ({
         onLoad={onMapLoad}
         onClick={addMarker}
       >
-        <Locate panTo={panTo} />
         {locateMarkerPosition ?
         (<Circle
         center={locateMarkerPosition}
