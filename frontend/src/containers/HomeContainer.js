@@ -221,23 +221,7 @@ const HomeContainer = ({
                         )}
                     </Grid>
                 </Grid>
-                <Grid container justify="flex-end">
-                    {showMap ? (
-                        <Button
-                            onClick={handleShowMap}
-                            startIcon={<ExpandLess />}
-                        >
-                            Show Table
-                        </Button>
-                    ) : (
-                        <Button
-                            onClick={handleShowMap}
-                            startIcon={<ExpandMore />}
-                        >
-                            Show Map
-                        </Button>
-                    )}
-                </Grid>
+
                 {showMap ? (
                     <Grid container>
                         <GMap
