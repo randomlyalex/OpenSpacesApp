@@ -395,18 +395,14 @@ export default function POIList({ pois: rows }) {
                                                         0
                                                     ) / row.ratedBy.length}
                                             </TableCell>
-                                            {'capacity' in row && (
-                                                <TableCell>
-                                                    {row.capacity}
-                                                </TableCell>
-                                            )}
-                                            {'sheltered' in row && (
-                                                <TableCell>
-                                                    {row.sheltered
-                                                        ? 'true'
-                                                        : 'false'}
-                                                </TableCell>
-                                            )}
+                                            <TableCell>
+                                                {row.capacity}
+                                            </TableCell>
+                                            <TableCell>
+                                                {row.sheltered
+                                                    ? 'true'
+                                                    : 'false'}
+                                            </TableCell>
                                         </TableRow>
                                     )
                                 })}
