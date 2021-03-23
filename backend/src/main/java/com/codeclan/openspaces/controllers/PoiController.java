@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class PoiController {
@@ -68,13 +70,21 @@ public class PoiController {
 
 //DELETE
 
-    @GetMapping(value = "/pois")
-    public ResponseEntity<List<Poi>> deletePoiById(
-            @RequestParam(name = "type", required = false) String type
+    @DeleteMapping(value = "/pois")
+    public ResponseEntity<List<Optional>> deletePoiByIds(
+            @RequestParam(name = "ids", required = true) List<String> documentIds,
+            @RequestParam(name = "user", required = false) String userId
     ){
-        if (type.equals("all") ){ return new ResponseEntity<>(poiRepository.findAll(), HttpStatus.OK);}
-        if (type != null ){ return new ResponseEntity<>(poiRepository.findAllByType(type), HttpStatus.OK);}
-        return new ResponseEntity<>(poiRepository.findAll(), HttpStatus.OK);
+        ArrayList<Optional> deletedPois = new ArrayList<>();
+        for (String id : documentIds) {
+            Optional<Poi> foundPoi;
+            foundPoi = poiRepository.findById(id);
+            if (foundPoi.createdBy == userId){
+                poiRepository.deleteById(id);
+                deletedPois.add(foundPoi);
+            }
+        }
+        return new ResponseEntity<>(deletedPois, HttpStatus.OK);
     }
 
 
