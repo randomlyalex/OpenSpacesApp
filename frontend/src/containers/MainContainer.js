@@ -105,8 +105,13 @@ const MainContainer = () => {
         setShowJson(!showJson)
     }
 
-    const handleShowAddPoiForm = () => {
-        setShowAddPoiForm(!showAddPoiForm)
+    const handleShowAddPoiForm = (action=null) => {
+
+        if(action == null){
+            setShowAddPoiForm(!showAddPoiForm)
+        }else {
+            setShowAddPoiForm(action)
+        }
     }
 
     const handleFilterUserPoi = (filterView) => {
@@ -137,6 +142,7 @@ const MainContainer = () => {
                                 <HomeContainer
                                     filterUsersPoi={filterUsersPoi}
                                     showAddPoiForm={showAddPoiForm}
+                                    handleShowAddPoiForm={handleShowAddPoiForm}
                                 />
                             )}
                         />
@@ -191,7 +197,7 @@ const MainContainer = () => {
                 <Divider />
                 <List>
                     <ListItem>
-                        <IconButton onClick={handleShowAddPoiForm}>
+                        <IconButton onClick={() => {handleShowAddPoiForm()}}>
                             <ListItemIcon>
                                 {showAddPoiForm ? (
                                     <Queue color="secondary" />

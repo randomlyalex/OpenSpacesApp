@@ -13,12 +13,12 @@ import {
 } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons'
 import React, { useEffect, useState } from 'react'
-import LeafletMap from '../components/LeafletMap'
 import PoiSubmitForm from '../components/PoiSubmitForm'
 import Request from '../helpers/request'
 import { useAuth0 } from '@auth0/auth0-react'
+import GMap from '../components/GMap'
 
-const HomeContainer = ({ showAddPoiForm, filterUsersPoi }) => {
+const HomeContainer = ({ showAddPoiForm, filterUsersPoi, handleShowAddPoiForm }) => {
     const serverUrl = process.env.REACT_APP_API_SERVER
     const { user, isAuthenticated } = useAuth0()
     const [pois, setPois] = useState([])
@@ -200,16 +200,14 @@ const HomeContainer = ({ showAddPoiForm, filterUsersPoi }) => {
                         </Button>
                     )}
                 </Grid>
-                {showMap && (
-                    <Grid container>
-                        <LeafletMap
-                            handleClickMapCallback={handleClickMapCallback}
-                            clickedMapLatLng={clickedMapLatLng}
-                            pois={pois}
-                            sliderValue={sliderValue}
-                        />
-                    </Grid>
-                )}
+                <Grid container>
+                    <GMap
+                        handleClickMapCallback={handleClickMapCallback}
+                        clickedMapLatLng={clickedMapLatLng}
+                        pois={pois}
+                        sliderValue={sliderValue}
+                        handleShowAddPoiForm={handleShowAddPoiForm}/>
+                </Grid>
             </Container>
         </>
     )
