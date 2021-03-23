@@ -16,13 +16,14 @@ import React, { useEffect, useState } from 'react'
 import PoiSubmitForm from '../components/PoiSubmitForm'
 import Request from '../helpers/request'
 import { useAuth0 } from '@auth0/auth0-react'
-<<<<<<< HEAD
 import POIList from '../components/POIList'
-=======
 import GMap from '../components/GMap'
->>>>>>> develop
 
-const HomeContainer = ({ showAddPoiForm, filterUsersPoi, handleShowAddPoiForm }) => {
+const HomeContainer = ({
+    showAddPoiForm,
+    filterUsersPoi,
+    handleShowAddPoiForm,
+}) => {
     const serverUrl = process.env.REACT_APP_API_SERVER
     const { user, isAuthenticated } = useAuth0()
     const [pois, setPois] = useState([])
@@ -226,7 +227,7 @@ const HomeContainer = ({ showAddPoiForm, filterUsersPoi, handleShowAddPoiForm })
                             onClick={handleShowMap}
                             startIcon={<ExpandLess />}
                         >
-                            Hide Map
+                            Show Table
                         </Button>
                     ) : (
                         <Button
@@ -237,14 +238,21 @@ const HomeContainer = ({ showAddPoiForm, filterUsersPoi, handleShowAddPoiForm })
                         </Button>
                     )}
                 </Grid>
-                <Grid container>
-                    <GMap
-                        handleClickMapCallback={handleClickMapCallback}
-                        clickedMapLatLng={clickedMapLatLng}
-                        pois={pois}
-                        sliderValue={sliderValue}
-                        handleShowAddPoiForm={handleShowAddPoiForm}/>
-                </Grid>
+                {showMap ? (
+                    <Grid container>
+                        <GMap
+                            handleClickMapCallback={handleClickMapCallback}
+                            clickedMapLatLng={clickedMapLatLng}
+                            pois={pois}
+                            sliderValue={sliderValue}
+                            handleShowAddPoiForm={handleShowAddPoiForm}
+                        />
+                    </Grid>
+                ) : (
+                    <Grid container>
+                        <POIList pois={pois} />
+                    </Grid>
+                )}
             </Container>
         </>
     )
