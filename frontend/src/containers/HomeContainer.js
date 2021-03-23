@@ -191,10 +191,10 @@ const HomeContainer = ({
                     </Grid>
                     <Grid item>
                         <Slider
-                            defaultValue={5}
-                            step={1}
-                            mix={0}
-                            max={20}
+                            defaultValue={100}
+                            step={25}
+                            min={10}
+                            max={500}
                             valueLabelDisplay="on"
                             onChange={(event, value) => {
                                 event.target.value = value
