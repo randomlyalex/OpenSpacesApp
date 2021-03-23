@@ -205,7 +205,7 @@ const HomeContainer = ({ showAddPoiForm, filterUsersPoi }) => {
                                 onClick={handleShowMap}
                                 startIcon={<ExpandLess />}
                             >
-                                Hide Map
+                                Show Table
                             </Button>
                         ) : (
                             <Button
