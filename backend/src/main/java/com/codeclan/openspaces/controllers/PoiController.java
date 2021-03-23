@@ -27,16 +27,8 @@ public class PoiController {
     @Autowired
     SpaceRepository spaceRepository;
 
-    @GetMapping(value = "/pois")
-    public ResponseEntity<List<Poi>> getAllPois(
-            @RequestParam(name = "type", required = false) String type
-    ){
-        if (type.equals("all") ){ return new ResponseEntity<>(poiRepository.findAll(), HttpStatus.OK);}
-        if (type != null ){ return new ResponseEntity<>(poiRepository.findAllByType(type), HttpStatus.OK);}
-        return new ResponseEntity<>(poiRepository.findAll(), HttpStatus.OK);
-    }
-
-       @PostMapping(value = "/benches")
+//    CREATE
+    @PostMapping(value = "/benches")
     public ResponseEntity<Poi> postBench(@RequestBody Bench bench){
         benchRepository.save(bench);
         return new ResponseEntity<>(bench, HttpStatus.CREATED);
@@ -60,5 +52,21 @@ public class PoiController {
         spaceRepository.save(space);
         return new ResponseEntity<>(space, HttpStatus.CREATED);
     }
+//READ
+    @GetMapping(value = "/pois")
+    public ResponseEntity<List<Poi>> getAllPois(
+            @RequestParam(name = "type", required = false) String type
+    ){
+        if (type.equals("all") ){ return new ResponseEntity<>(poiRepository.findAll(), HttpStatus.OK);}
+        if (type != null ){ return new ResponseEntity<>(poiRepository.findAllByType(type), HttpStatus.OK);}
+        return new ResponseEntity<>(poiRepository.findAll(), HttpStatus.OK);
+    }
+
+//UPDATE
+
+
+
+//DELETE
+
 
 }
