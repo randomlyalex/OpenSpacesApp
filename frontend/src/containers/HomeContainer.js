@@ -86,8 +86,8 @@ const HomeContainer = ({ showAddPoiForm, filterUsersPoi }) => {
                     case 'userFavPoi':
                         setPois(
                             allQueriedPois.filter((poi) => {
-                                if ('favBy' in poi) {
-                                    poi.favBy.indexOf(user.sub) > -1
+                                if ('favBy' in poi && poi.favBy.length > 0) {
+                                    return poi.favBy.indexOf(user.sub) != -1
                                 } else {
                                     false
                                 }
@@ -96,7 +96,22 @@ const HomeContainer = ({ showAddPoiForm, filterUsersPoi }) => {
 
                         break
                     case 'userRatedPoi':
-                        console.log('filter by userRatedPoi')
+                        setPois(
+                            allQueriedPois.filter((poi) => {
+                                if (
+                                    'ratedBy' in poi &&
+                                    poi.ratedBy.length > 0
+                                ) {
+                                    return (
+                                        poi.ratedBy.findIndex(
+                                            (rating) => rating.user == user.sub
+                                        ) != -1
+                                    )
+                                } else {
+                                    false
+                                }
+                            })
+                        )
                         break
                 }
             })
