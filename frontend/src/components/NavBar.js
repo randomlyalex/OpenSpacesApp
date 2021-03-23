@@ -23,7 +23,12 @@ const NavBar = ({ handleDrawerOpen }) => {
         <>
             <AppBar position="static">
                 <Toolbar>
-                    <Grid container spacing={1} justify="space-between">
+                    <Grid
+                        container
+                        spacing={1}
+                        justify="space-around"
+                        alignItems="center"
+                    >
                         <Grid item>
                             <Tab
                                 label="Home"
@@ -34,7 +39,7 @@ const NavBar = ({ handleDrawerOpen }) => {
                             />
                         </Grid>
                         <Grid item>
-                            <Typography variant="h5"> OPEN SPACES</Typography>
+                            <Typography variant="h4"> OpenSpaces</Typography>
                         </Grid>
 
                         <Grid item>
