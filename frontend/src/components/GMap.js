@@ -216,7 +216,10 @@ const GMap = ({
         (<Circle
         center={locateMarkerPosition}
         radius={sliderValue}
-        options={{fillColor:"#61dafb"}}
+        options={{
+          fillColor:"#61dafb",
+          strokeColor: "#61dafb",
+      }}  
         
         >
 
