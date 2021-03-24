@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -28,8 +29,10 @@ public class PoiController {
 
     @Autowired
     SpaceRepository spaceRepository;
+    private Optional<Poi> foundPoi;
+    private Optional<Poi> foundPoi1;
 
-//    CREATE
+    //    CREATE
     @PostMapping(value = "/benches")
     public ResponseEntity<Poi> postBench(@RequestBody Bench bench){
         benchRepository.save(bench);
@@ -71,22 +74,18 @@ public class PoiController {
 //DELETE
 
     @DeleteMapping(value = "/pois")
-    public ResponseEntity<List<Optional>> deletePoiByIds(
+    public ResponseEntity<List<Poi>> deletePoiByIds(
             @RequestParam(name = "ids", required = true) List<String> documentIds,
             @RequestParam(name = "user", required = false) String userId
     ){
-        ArrayList<Optional> deletedPois = new ArrayList<>();
+        ArrayList<Poi> deletedPois = new ArrayList<>();
         for (String id : documentIds) {
-            Optional<Poi> foundPoi;
-            foundPoi = poiRepository.findById(id);
-            if (foundPoi.createdBy == userId){
-                poiRepository.deleteById(id);
-                deletedPois.add(foundPoi);
+            Optional<Poi> foundPoi = poiRepository.findById(id);
+//           foundPoi.ifPresent(poi -> doSomething(poi))
+//           # check foundPoi has a method getCreatedBy
+//           # if user == getCreatedBy the add poi to deletePois and deleteByID
+
             }
-        }
         return new ResponseEntity<>(deletedPois, HttpStatus.OK);
     }
-
-
-
 }

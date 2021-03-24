@@ -91,4 +91,9 @@ public class Poi {
     public void setPrivacy(String privacy) {
         this.privacy = privacy;
     }
+
+    public String getCreatedBy(){
+        return "";
+    }
+
 }
