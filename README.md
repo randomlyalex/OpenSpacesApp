@@ -4,7 +4,7 @@ Original Brief given [here](https://github.com/randomlyalex-codeclan/OpenSpacesA
 
 [Link to planing diagrams](https://github.com/randomlyalex-codeclan/OpenSpacesApp/tree/main/planning)
 
-[Quick Pres on the project](https://docs.google.com/presentation/d/136gyZ701Z4ZlMoVBJ7lv_s6oZeflgGpfvWuPWa5XHWM/edit?usp=sharing)
+[10 Min Video Showcase for CodeClan](https://www.youtube.com/watch?v=vgtm01bFqb4)
 
 ## OpenSpacesApp Web App | Mongo, Java (Spring) and ReactJS
 
