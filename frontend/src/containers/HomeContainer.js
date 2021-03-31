@@ -28,7 +28,7 @@ const HomeContainer = ({
     const { user, isAuthenticated } = useAuth0()
     const [pois, setPois] = useState([])
     const [type, setType] = useState('all')
-    const [sliderValue, setSliderValue] = useState(5)
+    const [sliderValue, setSliderValue] = useState(200)
     const [showMap, setShowMap] = useState(true)
     const [clickedMapLatLng, setClickedMapLatLng] = useState({
         lat: 55,
@@ -55,8 +55,8 @@ const HomeContainer = ({
         if (endPoint != null) {
             request.post(`${serverUrl}/api/${endPoint}`, submittedPoi)
         }
-        console.log(endPoint)
-        console.log(submittedPoi)
+
+        handleShowAddPoiForm(false)
     }
 
     const handleClickMapCallback = (clickedMarker) => {
@@ -191,7 +191,7 @@ const HomeContainer = ({
                     </Grid>
                     <Grid item>
                         <Slider
-                            defaultValue={100}
+                            defaultValue={200}
                             step={25}
                             min={10}
                             max={500}
